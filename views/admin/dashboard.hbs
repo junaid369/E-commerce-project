@@ -1,0 +1,447 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+<!-- Datatable -->
+<link href="/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+<!-- Custom Stylesheet -->
+<link href="/css/style.css" rel="stylesheet">
+
+{{!-- -------------------------------------------------------------------------------- --}}
+
+<style>
+    body {
+        margin-top: 20px;
+    }
+
+    .p-xl {
+        padding: 40px;
+    }
+
+    .lazur-bg {
+        background-color: #ffffff;
+        color: #1d1b1b;
+    }
+
+    .red-bg {
+        background-color: #ffffff;
+        color: #1d1b1b;
+    }
+
+    .navy-bg {
+        background-color: #ffffff;
+        color: #1d1b1b;
+    }
+
+    .yellow-bg {
+        background-color: #ffffff;
+        color: #1d1b1b;
+    }
+
+    .widget {
+        border-radius: 5px;
+        padding: 15px 20px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+    }
+
+    .widget h2,
+    .widget h3 {
+        margin-top: 5px;
+        margin-bottom: 0;
+        border-bottom: 1px dotted white;
+    }
+
+    .m-t-md {
+        margin-top: 20px;
+    }
+</style>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<div class="row page-titles mx-0 shadow">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>DASHBOARD</h4>
+
+        </div>
+    </div>
+
+</div>
+<div class="container bootstrap snippets bootdey mb-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="widget lazur-bg p-xl">
+                <h3>Total Users</h3>
+                <div class=" row list-unstyled m-t-md">
+                    <div>
+                        <i class="fas fa-users fa-3x ml-3"></i>
+                    </div>
+                    <div>
+                        <h2 class="ml-3" style="width: 50px; height: 50px;">{{userCount}}</h2>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="widget red-bg p-xl">
+                <h3>Revenew</h3>
+                <div class=" row list-unstyled m-t-md">
+                    <div>
+                        <i class="fas fa-pound-sign fa-3x ml-3"></i>
+                    </div>
+                    <div>
+                        <h2 class="ml-3" style="width: 50px; height: 50px; "> {{Profite}}</h2>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="widget yellow-bg p-xl">
+                <h3>Total Product</h3>
+                <div class=" row list-unstyled m-t-md">
+                    <div>
+                        <i class="fab fa-product-hunt fa-3x ml-3"></i>
+
+                    </div>
+                    <div>
+
+
+                        <h2 class="ml-3" style="width: 50px; height: 50px; "> {{productCount}}</h2>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+<div class="row  col-12">
+
+    <div class="col-6">
+        <h2 class="text-center">Order details</h2>
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+        <script>
+            var xValues = ["COD", "Paypal", "Razorpay"];
+            var yValues = [{{ AllMethods }}];
+            var barColors = [
+                "#b91d47",
+                "#00aba9",
+                "#2b5797",
+                "#e8c3b9",
+                "#1e7145"
+            ];
+
+            new Chart("myChart", {
+                type: "doughnut",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Payment Methods"
+                    }
+                }
+            });
+        </script>
+    </div>
+
+    <div class="col-6">
+        <h2 class="text-center"> Details</h2>
+        <canvas id="chart2" style="width:100%;max-width:600px"></canvas>
+
+
+        <script>
+            var xValues = ["Pending", "Placed", "shipped", "Delivered", "sss"];
+            var yValues = [{{ Status }}];
+
+            new Chart("chart2", {
+                type: "bar",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        fill: false,
+                        lineTension: 0,
+                        backgroundColor: "rgba(0,0,255,1.0)",
+                        borderColor: "rgba(0,0,255,0.1)",
+                        data: yValues
+                    }]
+                },
+                options: {
+                    legend: { display: false },
+                    scales: {
+                        yAxes: [{ ticks: { min: 0, max: 10 } }],
+                    },
+                    title: {
+                        display: true,
+                        text: "Payment Methods"
+                    }
+
+                },
+
+
+            });
+        </script>
+
+    </div>
+
+
+
+
+
+
+
+
+    <div class="col-12 mt-5">
+
+        {{!-- ------------------------------------------------------------------------------------------------ --}}
+
+
+
+        <div class="row page-titles mx-0 shadow  ">
+            <div class="col-sm-6 p-md-0">
+                <div class="welcome-text">
+                    <h4>LATEST PRODUCT</h4>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- row -->
+
+
+
+        <div class="row">
+
+            <div class="col-12">
+                <div class="card">
+
+                    <div class="card-body shadow">
+                        <div class="table-responsive">
+                            <table id="example2" class="display " style="width:100%;color: black;">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Stock</th>
+                                        <th>Brand</th>
+                                        <th>category</th>
+                                        {{!-- <th>Mcategory</th> --}}
+                                        <th>Price</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each latestproduct}}
+                                    <tr>
+                                        <td>{{this.name}}</td>
+                                        <td>{{this.pstock}}</td>
+                                        {{!-- <td>{{this.cat}}</td> --}}
+                                        <td>{{this.brand}}</td>
+                                        <td>{{this.cat}}</td>
+                                        {{!--
+                                        <td>{{this.Mcategory}}</td> --}}
+
+                                        <td>
+                                            {{this.PPrice}}
+                                        </td>
+
+                                    </tr>
+                                    {{/each}}
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {{!-- ------------------------------------------------------------------------------------------------ --}}
+
+    </div>
+
+    {{!-- ---------------------------------------------------------------------------------------------- --}}
+    <div class="col-12 mt-5">
+
+        {{!-- ------------------------------------------------------------------------------------------------ --}}
+
+
+
+        <div class="row page-titles mx-0 shadow  ">
+            <div class="col-sm-6 p-md-0">
+                <div class="welcome-text">
+                    <h4>LATEST ORDERS</h4>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- row -->
+
+
+
+        <div class="row">
+
+            <div class="col-12">
+                <div class="card">
+
+                    <div class="card-body shadow">
+                        <div class="table-responsive">
+                            <table id="example2" class="display " style="width:100% ; color: black;">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Total</th>
+                                        <th>PaymentMethod</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each latestorders}}
+                                    <tr>
+                                        <td>{{this.deliveryDetails.FirstName}}</td>
+                                        <td>{{this.Date}}</td>
+                                        <td>{{this.Time}}</td>
+                                        <td>{{this.Total}}</td>
+                                        <td> {{this.PaymentMethod}} </td>
+                                        <td> {{this.Status}}</td>
+                                    </tr>
+                                    {{/each}}
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {{!-- ------------------------------------------------------------------------------------------------ --}}
+
+    </div>
+    {{!-- --------------------------------------------------------------------------------------------------- --}}
+    <div class="col-lg-4">
+        <div class="ibox">
+            <div class="ibox-head">
+                <div class="ibox-title">Best Sellers</div>
+            </div>
+            <div class="ibox-body">
+                <ul class="media-list media-list-divider m-0">
+                    <li class="media">
+                        <a class="media-img" href="javascript:;">
+                            <img src="./assets/img/image.jpg" width="50px;" />
+                        </a>
+                        <div class="media-body">
+                            <div class="media-heading">
+                                <a href="javascript:;">Samsung</a>
+                                <span class="font-16 float-right">1200</span>
+                            </div>
+                            <div class="font-13">Lorem Ipsum is simply dummy text.</div>
+                        </div>
+                    </li>
+                    <li class="media">
+                        <a class="media-img" href="javascript:;">
+                            <img src="./assets/img/image.jpg" width="50px;" />
+                        </a>
+                        <div class="media-body">
+                            <div class="media-heading">
+                                <a href="javascript:;">iPhone</a>
+                                <span class="font-16 float-right">1150</span>
+                            </div>
+                            <div class="font-13">Lorem Ipsum is simply dummy text.</div>
+                        </div>
+                    </li>
+                    <li class="media">
+                        <a class="media-img" href="javascript:;">
+                            <img src="./assets/img/image.jpg" width="50px;" />
+                        </a>
+                        <div class="media-body">
+                            <div class="media-heading">
+                                <a href="javascript:;">iMac</a>
+                                <span class="font-16 float-right">800</span>
+                            </div>
+                            <div class="font-13">Lorem Ipsum is simply dummy text.</div>
+                        </div>
+                    </li>
+                    <li class="media">
+                        <a class="media-img" href="javascript:;">
+                            <img src="./assets/img/image.jpg" width="50px;" />
+                        </a>
+                        <div class="media-body">
+                            <div class="media-heading">
+                                <a href="javascript:;">apple Watch</a>
+                                <span class="font-16 float-right">705</span>
+                            </div>
+                            <div class="font-13">Lorem Ipsum is simply dummy text.</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="ibox-footer text-center">
+                <a href="javascript:;">View All Products</a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<style>
+    .visitors-table tbody tr td:last-child {
+        display: flex;
+        align-items: center;
+    }
+
+    .visitors-table .progress {
+        flex: 1;
+    }
+
+    .visitors-table .progress-parcent {
+        text-align: right;
+        margin-left: 10px;
+    }
+</style>
+
+
+<script src="/vendor/global/global.min.js"></script>
+<script src="/js/quixnav-init.js"></script>
+<script src="/js/custom.min.js"></script>
+
+
+
+<!-- Datatable -->
+<script src="/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/js/plugins-init/datatables.init.js"></script>

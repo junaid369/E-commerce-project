@@ -1,0 +1,55 @@
+
+
+ 
+  <div class="pt-5">
+  
+    <div class="container">
+        <div class="row">
+          <div class="col-md-5 mx-auto">
+            <div class="card card-body " style="margin-top: 5rem; width:30rem; height: 24rem; margin-left: -5rem;  ">
+               <form id="userLoginvalidation" action="/login" method="post" data-parsley-validate=""
+                    data-parsley-errors-messages-disabled="true" novalidate="" _lpchecked="1"> 
+                <input type="hidden" name="_csrf" value="7635eb83-1f95-4b32-8788-abec2724a9a4">
+                <div class="form-group required">
+                  <lSabel for="username"> Enter your mobile number </lSabel>
+                  <input type="text" class="form-control text-lowercase"  name="mobile"
+                    value="">
+                </div>
+                <div class="form-group required">
+                  <label class="d-flex flex-row align-items-center" for="password"> Enter your Password
+                    
+                  </label>
+                  <input type="password" class="form-control"   name="password" value="">
+                </div>
+                <div class="row   mb-4">
+               
+                <a href="/forget-passwordmo"><span>Forget pasword</span></a>
+                </div>
+                <div class="form-group pt-1">
+                  {{#if loginErr}}
+                  <h6 class="font pb-3" style="color: red;">invalid email or password</h6>
+                  {{/if}}
+                  {{#if blockErr}}
+                   <h6 class="font pb-3" style="color: red;">This User was Blocked By adminr</h6>
+                   {{/if}}
+                  <button class="btn btn-primary btn-block" type="submit" style="background-color: #414c6a;"> Log In </button>
+                </div>
+          
+            
+              <div class="col-signup text-center ">
+                <a class="signup  text-center" href="/signup" style="text-decoration: none; "> Sign up </a>
+              </div>
+              <div class="footer  text-center ">
+                <a href="/mobile" style="text-decoration: none;">login with otp</a>
+              </div>
+               </form>
+            </div>
+
+          </div>
+        </div>
+  
+    </div>
+  </div>
+ 
+
+

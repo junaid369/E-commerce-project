@@ -1,0 +1,115 @@
+{{!-- <h2 class="title text-center">Add New Banner</h2> --}}
+
+<form action="/admin/edit-banner/{{banner._id}}" method="post" id="banner" enctype="multipart/form-data"  onsubmit="return submitForm(this)">
+
+
+  <div class=" row col-lg-12">
+    <div class="col-lg-6 mt-5">
+      <input type="text" class="form-control mb-3" id="banner" placeholder="Banner Name" name="banner" value="{{banner.name}}">
+    </div>
+    <div class="col-lg-6 mt-5">
+      <input type="text" class="form-control mb-3" id="banner" placeholder="description" name="description" value="{{banner.description}}">
+    </div>
+  </div>
+ <div class=" row col-lg-12">
+    <div class="col-lg-6 mt-5">
+      <input type="text" class="form-control mb-3" id="brand" placeholder="title1" name="title1" value="{{banner.title1}}">
+    </div>
+    <div class="col-lg-6 mt-5">
+      <input type="text" class="form-control mb-3" id="brand" placeholder="title2" name="title2" value="{{banner.title2}}">
+    </div>
+  </div>
+ <div class=" row col-lg-12">
+    <div class="col-lg-6 mt-5">
+      <input type="text" class="form-control mb-3" id="brand" placeholder="title3" name="title3 " value="{{banner.title3}}">
+    </div>
+    <div class="col-lg-6 mt-5">
+      <input type="text" class="form-control mb-3" id="brand" placeholder="link" name="link" value="{{banner.title3}}">
+    </div>
+  </div>
+
+
+
+
+  <div class="mt-5">
+    <label for="">IMAGE 1</label>
+    <img src="/banner-images/{{banner._id}}.jpg" alt="" style="width: 100px; height:auto" id="imgview8">
+    {{!-- <div id="preview1"></div> --}}
+    <input type="file" name="image8" id="file8" class="form-control" onchange="return fileValidation8()">
+  </div>
+
+  <div class="col-12">
+    <div id="image-box8" style="width: 500px; height: 500px; display: none;"></div>
+    <button class="btn btn-primary mt-3" type="button" style="display: none;" id="crop-btn8">Crop</button>
+  </div>
+
+
+
+  <button id="confirm-btn8" type="submit" class="btn btn-primary">Update banner</button><br>
+</form>
+
+<script>
+
+  function viewimagenew(event){
+    document.getElementById('image').src=URL.createObjectURL(event.target.files[0])
+  }
+
+</script>
+<script>
+
+
+
+function fileValidation8() {
+    const imagebox = document.getElementById('image-box8')
+    const crop_btn = document.getElementById('crop-btn8')
+    var fileInput = document.getElementById('file8');
+
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+        alert('Please upload file having extensions .jpeg only.');
+        fileInput.value = '';
+        return false;
+    } else {
+        //Image preview
+        const img_data = fileInput.files[0]
+        const url = URL.createObjectURL(img_data)
+        imagebox.innerHTML = `<img src="${url}" id="image8" style="width:100%">`
+        const image = document.getElementById('image8')
+        document.getElementById('image-box8').style.display = 'block'
+        document.getElementById('crop-btn8').style.display = 'block'
+        document.getElementById('confirm-btn8').style.display = 'none'
+
+        const cropper = new Cropper(image, {
+            autoCropArea: 1,
+            viewMode: 1,
+            scalable: false,
+            zoomable: false,
+            movable: false,
+            aspectRatio: 16 / 19,
+            //  preview: '.preview',
+            minCropBoxWidth: 180,
+            minCropBoxHeight: 240,
+        })
+        crop_btn.addEventListener('click', () => {
+            cropper.getCroppedCanvas().toBlob((blob) => {
+                let fileInputElement = document.getElementById('file8');
+                let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                let container = new DataTransfer();
+
+                container.items.add(file);
+                const img = container.files[0]
+                var url = URL.createObjectURL(img)
+                fileInputElement.files = container.files;
+                document.getElementById('imgview8').src = url
+                document.getElementById('image-box8').style.display = 'none'
+                document.getElementById('crop-btn8').style.display = 'none'
+                document.getElementById('confirm-btn8').style.display = 'block'
+            });
+        });
+    }
+}
+
+</script>
+
+

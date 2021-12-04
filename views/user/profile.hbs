@@ -1,0 +1,234 @@
+
+
+<div class="container emp-profile">
+    <form method=""  action=""  enctype=''>
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                        alt="" />
+                    <div class="file btn btn-lg btn-primary">
+                        Change Photo
+                        <input type="file" name="file" />
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="col-md-6 mt-5" style="">
+                <div class="profile-head">
+                    <h5>
+                        {{userdetails.firstname}}{{userdetails.lastname}}
+                    </h5>
+                    <h6>
+                        Web Developer and Designer
+                    </h6>
+
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                aria-controls="home" aria-selected="true">About</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        
+            	<div class=" mr-auto" style="margin-top: 7rem; margin-right: 8rem;" >
+							<a href="/edit-profile/{{userdetails._id}}" class="btn btn-primary">Edit profile</a>
+							</div>
+                    
+            {{!-- <div class="col-md-2">
+               <a href="user/edit-profile"> <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"></a>
+            </div> --}}
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+                    <p>WORK LINK</p>
+                    <a href="/orders">My Orders</a><br />
+                    {{!-- <a href="">Add new Address</a><br /> --}}
+                    <a href="/change-password">Change password</a>
+
+                </div>
+            </div>
+            <div class="col-md-8 " style="margin-bottom: 40px;">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                  
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label >Name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p> {{userdetails.firstname}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{userdetails.email}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Phone</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{userdetails.mobile}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Profession</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Web Developer and Designer</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+   
+
+    <div class="row  ml-5">
+      {{#each address}}
+
+  
+        <div class="col-md-3" style="">
+
+        
+            <div class="card mt-4" style="height: 16rem;">
+
+                <h4 class="text-center mt-3">Your address</h4>
+
+                <div class="card-body " style=""> 
+                    <div class="mb-2" style="min-height:100px; ">
+
+                    
+
+
+                    <h5 class="card-title">{{this.FirstName}}{{this.LastName}}</h5>
+                    <h5 class="card-text">{{this.House}},{{this.Street}},{{this.Town}},{{this.PIN}}</h5>
+
+                    {{!-- <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a> --}}
+                    </div>
+                 {{!-- <div class="" style="margin-top: 30px; ">
+ <button type="button" class="btn btn-success" style="margin-left: -20px">EditAddress</button>
+ <button type="button" class="btn btn-danger"  style="width: 7rem;">Delete</button>
+
+                    </div> --}}
+                    <div class="" style="">
+                        {{!-- <a href="/editaddress/{{this._id}}">Edit</a> --}}
+                     <a href="/editaddress/{{this._id}}" class="class=btn btn-success text-center" type="submit"  style=" width: 13rem; height: 30px; color: white; border: none; " value="Edit" >Edit</a> 
+                    </div>
+                             <div class="mt-2" >
+                      <a href="/delete-address/{{this._id}}"  class="class=btn btn-danger text-center" type="submit" style="width: 13rem; height: 30px; border: none; color: white;" >Delete</a>
+                    </div>
+                      {{!-- <a href="/admin/editproduct/{{this._id}}">  <button type="submit" class="btn btn-primary"> EDIT</button></a> --}}
+              
+                </div>
+
+            </div>
+        
+        </div>
+   {{/each}}
+   
+  
+        <div class="col-md-3" style="">
+
+        
+            <div class="card mt-4 " style="height: 15rem;">
+
+                <h4 class="text-center mt-3">Addnewaddress</h4>
+
+                <div class="card-body mt-3 " style="text-align: center; font-size: xx-large;"> 
+                  {{!-- <i class="bi bi-plus"></i> --}}
+                  {{!-- <i class="fas fa-cart-plus"></i> --}}
+            <a href="/addprofile-address">   <i class="fas fa-plus" style=""></i></a>
+   
+                </div>
+
+            </div>
+        
+        </div>
+    </div>
+    
+
+
+    
+    
+ </form>
+ 
+</div> 
+
+<script>
+   
+
+
+
+    function fileValidation5() {
+    const imagebox = document.getElementById('image-box5')
+    const crop_btn = document.getElementById('crop-btn5')
+    var fileInput = document.getElementById('file5');
+
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+        alert('Please upload file having extensions .jpeg only.');
+        fileInput.value = '';
+        return false;
+    } else {
+        //Image preview
+        const img_data = fileInput.files[0]
+        const url = URL.createObjectURL(img_data)
+        imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%">`
+        const image = document.getElementById('image')
+        document.getElementById('image-box5').style.display = 'block'
+        document.getElementById('crop-btn5').style.display = 'block'
+      
+
+        const cropper = new Cropper(image, {
+            autoCropArea: 1,
+            viewMode: 1,
+            scalable: false,
+            zoomable: false,
+            movable: false,
+            aspectRatio: 16 / 19,
+            //  preview: '.preview',
+            minCropBoxWidth: 180,
+            minCropBoxHeight: 240,
+        })
+        crop_btn.addEventListener('click', () => {
+            cropper.getCroppedCanvas().toBlob((blob) => {
+                let fileInputElement = document.getElementById('file5');
+                let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                let container = new DataTransfer();
+
+                container.items.add(file);
+                const img = container.files[0]
+                var url = URL.createObjectURL(img)
+                fileInputElement.files = container.files;
+                document.getElementById('imgview5').src = url
+                document.getElementById('image-box5').style.display = 'none'
+                document.getElementById('crop-btn5').style.display = 'none'
+               
+            });
+        });
+    }
+}
+
+  
+
+</script>
+
+

@@ -1,0 +1,59 @@
+<div class="category">
+  <a href="/admin/addcategory"> <button type="button" class="btn btn-primary"> Add new category</button></a>
+
+
+</div>
+<div class="container " style="margin-top: 5rem;">
+
+  <table class="table" id="admintable">
+    <thead class="thead-dark">
+      <tr>
+        <th>No</th>
+        <th>category Name</th>
+        {{!-- <th>Scategory</th> --}}
+        <th>Options</th>
+      </tr>
+    </thead>
+
+
+    <tbody> {{#each cat}}
+      <tr>
+        <td>{{@index}}</td>
+        <td>{{this.categories}}</td>
+        {{!-- <td> --}}
+
+          {{!-- <ul>
+            {{#each scategory}}
+            <li>
+              {{this}}
+            </li> --}}
+
+            {{!-- {{/each}} --}}
+          {{!-- </ul> --}}
+
+
+        {{!-- </td> --}}
+
+
+
+        <td>
+          <a href="/admin/category-edit/{{this._id}}"> <button type="submit" class="btn btn-primary"> Edit</button></a>
+          {{!-- <a href="/admin/category-delete/{{this._id}}"> <button type="submit"
+              class="btn btn-danger">DELETE</button></a> --}}
+  <a class="btn btn-danger" href="/admin/category-delete/{{this._id}}" name="{{this.category}}"
+                        onclick="deleteCategory(event)"><i class="fas fa-trash-alt"></i></a>
+
+
+
+        </td>
+
+      </tr>
+      {{/each}}
+
+
+
+    </tbody>
+  </table>
+
+</div>
+

@@ -1,0 +1,45 @@
+
+<div class="container">
+
+  <table class="table" id="admintable">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>PH No</th>
+        <th>Status</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each userlist}}
+      <tr>
+        <td>{{this.firstname}}</td>
+        <td>{{this.email}}</td>
+        <td>{{this.mobile}}</td>
+        {{#if this.status}}
+        <td>Active</td>
+        {{else}}
+            <td>Block</td>
+            {{/if}}
+
+
+
+{{#if this.status}}
+
+        <td>
+  <a href="/admin/block-user/{{this._id}}"> <button type="button" class="btn btn-danger">Block</button></a>   
+        </td>
+        {{else}}
+        
+        <td>
+  <a href="/admin/unblock-user/{{this._id}}"> <button type="button" class="btn btn-danger">Active</button>  </a>   
+        </td>
+      </tr>
+    {{/if}}
+      
+      {{/each}}
+    </tbody>
+  </table>
+  
+</div>

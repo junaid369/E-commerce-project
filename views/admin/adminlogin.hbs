@@ -1,0 +1,48 @@
+<body>
+
+  <head>
+
+  </head>
+  <div class="pt-5">
+
+    <div class="container">
+      <form class="login100-form validate-form" id="adminlogin" method="POST" action="/admin/login">
+        <div class="row">
+          <div class="col-md-5 mx-auto">
+            <div class="card card-body " style="margin-top: 5rem;">
+              {{!-- <form id="submitForm" action="#" method="post" data-parsley-validate=""
+                data-parsley-errors-messages-disabled="true" novalidate="" _lpchecked="1"> --}}
+                <input type="hidden" name="_csrf" value="7635eb83-1f95-4b32-8788-abec2724a9a4">
+                <div class="form-group required">
+                  <lSabel for="username"> Enter your Email </lSabel>
+                  <input type="text" class="form-control text-lowercase" id="username" name="email" value="">
+                </div>
+                <div class="form-group required">
+                  <label class="d-flex flex-row align-items-center" for="password"> Enter your Password
+
+                  </label>
+                  <input type="password" class="form-control" id="password" name="password" value="">
+                </div>
+
+                <div class="form-group pt-1">
+                  {{#if loginErr}}
+                  <h6 class="font pb-3" style="color: red;">invalid email or password</h6>
+                  {{/if}}
+                  <button class="btn btn-primary btn-block" type="submit"> Submit </button>
+
+                </div>
+                {{!--
+              </form> --}}
+
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+</body>

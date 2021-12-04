@@ -1,0 +1,343 @@
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+
+<h3 class="tittle">Edit product</h3>
+<form action="/admin/edit-product/{{product._id}}" method="post" id="new" onsubmit="return submitForm(this)" enctype="multipart/form-data">
+  <div class="row justify-content-center col-lg-12 " style="margin-top: 4rem;">
+
+
+
+    <div class="col-lg-6">
+      <input type="text" class="form-control mb-3" id="email" placeholder="Product Name" name="name" value="{{product.name}}">
+    </div>
+    <div class="input-group col-lg-6">
+
+      <select class="custom-select" name="cat" id="inputGroupSelect01">
+        <option selected >{{product.cat}}</option>
+
+{{#each cat}}
+        <option value="{{this.categories}}">{{this.categories}}</option>
+       {{/each}}
+      </select>
+    </div>
+
+
+  </div>
+
+
+
+
+  <div class="row justify-content-center col-lg-12  ">
+
+
+    <div class="input-group col-lg-6">
+
+      <select class="custom-select" name="brand" id="inputGroupSelect01">
+        <option selected  value="">{{product.brand}}</option>
+        {{#each brand}}
+        <option value="">{{this.brand}}</option>
+        {{!-- <option value="2">Nike</option>
+        <option value="3">Arelia</option> --}}
+        {{/each}}
+      </select>
+    </div>
+    <div class="col-lg-6">
+      <input type="text" class="form-control" placeholder="Price" name="PPrice" value="{{product.PPrice}}">
+    </div>
+
+  </div>
+  <div class="row justify-content-center col-lg-12 mt-3  ">
+
+
+
+    <div class="col-lg-6">
+      <input type="text" class="form-control mb-3 " id="color" placeholder="producid" name="pid" value="{{product.pid}}">
+    </div>
+
+
+    <div class="input-group col-lg-6">
+
+
+      <select class="custom-select" name="size" id="inputGroupSelect01">
+      
+        <option selected value="{{product.size}}" >{{product.size}}</option>
+     
+         <option value="">md</option>
+        <option value="">lg</option>
+        <option value="">xl</option>
+        <option value="">2xl</option>
+        <option value="">3xl</option> 
+         
+      </select>
+
+    
+    </div>
+
+  </div>
+  <div class="row justify-content-center col-lg-12 mt-1  ">
+
+
+
+
+    <div class="col-lg-6">
+      <input type="number" class="form-control mb-3 " id="pStock" placeholder="Stock" name="pstock" value="{{product.pstock}}">
+    </div>
+    <div class="col-lg-6">
+      <input type="text" class="form-control mb-3 " id="lcost" placeholder="Landing Cost" name="lcost" value="{{product.lcost}}">
+    </div>
+
+  </div>
+
+
+  <div class="mt-5">
+    <label for="">IMAGE 1</label>
+    <img src="/product-images/{{product._id}}.a.jpg" alt="" style="width: 100px; height:auto" id="imgview2">
+    {{!-- <div id="preview1"></div> --}}
+    <input type="file" name="image" id="file2" class="form-control" onchange="return fileValidation2()">
+  </div>
+   <div class="col-12">
+    <div id="image-box2" style="width: 500px; height: 500px; display: none;"></div>
+    <button class="btn btn-primary mt-3" type="button" style="display: none;" id="crop-btn2">Crop</button>
+  </div>
+  
+
+
+
+  <div class="mt-5">
+    <label for="">IMAGE 2</label>
+    <img src="/product-images/{{product._id}}.b.jpg" alt="" style="width: 100px; height:auto" id="imgview3">
+    {{!-- <div id="preview1"></div> --}}
+    <input type="file" name="image2" id="file3" class="form-control" onchange="return fileValidation3()">
+  </div>
+  <div class="col-12">
+    <div id="image-box3" style="width: 500px; height: 500px; display: none;"></div>
+    <button class="btn btn-primary mt-3" type="button" style="display: none;" id="crop-btn3">Crop</button>
+  </div>
+  
+
+
+
+
+  <div class="mt-5">
+    <label for="">IMAGE 2</label>
+    <img src="/product-images/{{product._id}}.c.jpg" alt="" style="width: 100px; height:auto" id="imgview4">
+    {{!-- <div id="preview1"></div> --}}
+    <input type="file" name="image3" id="file4" class="form-control" onchange="return fileValidation4()">
+  </div>
+  <div class="col-12">
+    <div id="image-box4" style="width: 500px; height: 500px; display: none;"></div>
+    <button class="btn btn-primary mt-3" type="button" style="display: none;" id="crop-btn4">Crop</button>
+  </div>
+  
+
+
+
+
+
+
+  <div class="footer">
+ <button id="confirm-btn4" type="submit" class="btn btn-primary">Edit Product</button><br>
+  </div>
+ 
+
+
+
+</form>
+<script src="/js/signupvalidation.js"></script>
+<script>
+
+  
+function fileValidation2() {
+    const imagebox = document.getElementById('image-box2')
+    const crop_btn = document.getElementById('crop-btn2')
+    var fileInput = document.getElementById('file2');
+
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+        alert('Please upload file having extensions .jpeg only.');
+        fileInput.value = '';
+        return false;
+    } else {
+        //Image preview
+        const img_data = fileInput.files[0]
+        const url = URL.createObjectURL(img_data)
+        imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%">`
+        const image = document.getElementById('image')
+        document.getElementById('image-box2').style.display = 'block'
+        document.getElementById('crop-btn2').style.display = 'block'
+        document.getElementById('confirm-btn4').style.display = 'none'
+
+        const cropper = new Cropper(image, {
+            autoCropArea: 1,
+            viewMode: 1,
+            scalable: false,
+            zoomable: false,
+            movable: false,
+            aspectRatio: 16 / 19,
+            //  preview: '.preview',
+            minCropBoxWidth: 180,
+            minCropBoxHeight: 240,
+        })
+        crop_btn.addEventListener('click', () => {
+            cropper.getCroppedCanvas().toBlob((blob) => {
+                let fileInputElement = document.getElementById('file2');
+                let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                let container = new DataTransfer();
+
+                container.items.add(file);
+                const img = container.files[0]
+                var url = URL.createObjectURL(img)
+                fileInputElement.files = container.files;
+                document.getElementById('imgview2').src = url
+                document.getElementById('image-box2').style.display = 'none'
+                document.getElementById('crop-btn2').style.display = 'none'
+                document.getElementById('confirm-btn4').style.display = 'block'
+            });
+        });
+    }
+}
+
+</script>
+
+<script>
+function fileValidation3() {
+    const imagebox = document.getElementById('image-box3')
+    const crop_btn = document.getElementById('crop-btn3')
+    var fileInput = document.getElementById('file3');
+
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+        alert('Please upload file having extensions .jpeg only.');
+        fileInput.value = '';
+        return false;
+    } else {
+        //Image preview
+        const img_data = fileInput.files[0]
+        const url = URL.createObjectURL(img_data)
+        imagebox.innerHTML = `<img src="${url}" id="image3" style="width:100%">`
+        const image = document.getElementById('image3')
+        document.getElementById('image-box3').style.display = 'block'
+        document.getElementById('crop-btn3').style.display = 'block'
+        document.getElementById('confirm-btn4').style.display = 'none'
+
+        const cropper = new Cropper(image, {
+            autoCropArea: 1,
+            viewMode: 1,
+            scalable: false,
+            zoomable: false,
+            movable: false,
+            aspectRatio: 16 / 19,
+            //  preview: '.preview',
+            minCropBoxWidth: 180,
+            minCropBoxHeight: 240,
+        })
+        crop_btn.addEventListener('click', () => {
+            cropper.getCroppedCanvas().toBlob((blob) => {
+                let fileInputElement = document.getElementById('file3');
+                let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                let container = new DataTransfer();
+
+                container.items.add(file);
+                const img = container.files[0]
+                var url = URL.createObjectURL(img)
+                fileInputElement.files = container.files;
+                document.getElementById('imgview3').src = url
+                document.getElementById('image-box3').style.display = 'none'
+                document.getElementById('crop-btn3').style.display = 'none'
+                document.getElementById('confirm-btn4').style.display = 'block'
+            });
+        });
+    }
+}
+
+</script>
+<script>
+
+
+
+function fileValidation4() {
+    const imagebox = document.getElementById('image-box4')
+    const crop_btn = document.getElementById('crop-btn4')
+    var fileInput = document.getElementById('file4');
+
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+        alert('Please upload file having extensions .jpeg only.');
+        fileInput.value = '';
+        return false;
+    } else {
+        //Image preview
+        const img_data = fileInput.files[0]
+        const url = URL.createObjectURL(img_data)
+        imagebox.innerHTML = `<img src="${url}" id="image4" style="width:100%">`
+        const image = document.getElementById('image4')
+        document.getElementById('image-box4').style.display = 'block'
+        document.getElementById('crop-btn4').style.display = 'block'
+        document.getElementById('confirm-btn4').style.display = 'none'
+
+        const cropper = new Cropper(image, {
+            autoCropArea: 1,
+            viewMode: 1,
+            scalable: false,
+            zoomable: false,
+            movable: false,
+            aspectRatio: 16 / 19,
+            //  preview: '.preview',
+            minCropBoxWidth: 180,
+            minCropBoxHeight: 240,
+        })
+        crop_btn.addEventListener('click', () => {
+            cropper.getCroppedCanvas().toBlob((blob) => {
+                let fileInputElement = document.getElementById('file4');
+                let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                let container = new DataTransfer();
+
+                container.items.add(file);
+                const img = container.files[0]
+                var url = URL.createObjectURL(img)
+                fileInputElement.files = container.files;
+                document.getElementById('imgview4').src = url
+                document.getElementById('image-box4').style.display = 'none'
+                document.getElementById('crop-btn4').style.display = 'none'
+                document.getElementById('confirm-btn4').style.display = 'block'
+            });
+        });
+    }
+}
+
+
+
+
+
+})
+</script>
+
+
+
+
+{{!-- 
+<script>
+ 
+
+
+  function viewimage(event){
+    document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
+  }
+</script>
+<script>
+  function viewimage2(event){
+    document.getElementById('imgViewsecond').src=URL.createObjectURL(event.target.files[0])
+  }
+</script>
+<script>
+  function viewimage3(event){
+    document.getElementById('imgViewthird').src=URL.createObjectURL(event.target.files[0])
+  }
+
+
+
+
+
+</script>  --}}

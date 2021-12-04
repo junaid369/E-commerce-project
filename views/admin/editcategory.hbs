@@ -1,0 +1,17 @@
+
+<form action="/admin/edit-category/{{catgy._id}}" method="post" id="sample"  onsubmit="return submitForm(this)">
+    <h2 class="title text-center">Edit Category</h2>
+ 
+
+
+
+ 
+    <div class="col-lg-6 mt-5">
+      <input type="text" class="form-control mb-3" id="category" name="cname" value="{{catgy.categories}}">
+    </div>
+     {{!-- <div class="col-lg-6 mt-5">
+      <input type="text" class="form-control mb-3" id="category"  name="sname" value="{{catgy.scategory}}">
+    </div> --}}
+
+  <button type="submit" class="btn btn-primary ml-5">EDIT</button>
+</form>

@@ -1,0 +1,48 @@
+<div class="brands">
+ <a href="/admin/add-banner"> <button type="button" class="btn btn-primary"> Add new banner</button></a>
+</div>
+
+
+<div class="container " style="margin-top: 5rem;">
+
+  <table class="table" id="admintable">
+    <thead class="thead-dark">
+      <tr>
+     
+         <th>Banner logo</th>
+        <th>Banner Name</th>
+     
+           <th>Description</th>
+     
+            <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each banner}}
+      <tr>
+        {{!-- <td>1</td> --}}
+        {{!-- <td>{{this.logo}}</td> --}}
+          <td>
+          <img style="width: 50px; height: 50px;" src="/banner-images/{{this._id}}.jpg">
+        </td>
+          <td>{{this.name}}</td>
+            <td>{{this.description}}</td>
+      
+      
+        <td>
+           <a href="/admin/banner-edit/{{this._id}}">  <button type="submit" class="btn btn-primary"> Edit</button></a>
+            {{!-- <a href="/admin/brand-delete/{{this._id}}"><button type="submit" class="btn btn-danger" onclick="deleteBrand(event)"> Delete</button></a>  --}}
+               <a class="btn btn-danger" href="/admin/banner-delete/{{this._id}}" name="{{this.banner}}"
+                        ><i class="fas fa-trash-alt"></i></a>
+{{!-- 
+onclick="deleteCategory(event)" --}}
+
+  
+        </td>
+      </tr>
+        {{/each}}
+   
+    </tbody>
+  </table>
+  
+</div>

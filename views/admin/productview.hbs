@@ -1,0 +1,54 @@
+<div>
+  <a href="/admin/addproduct"> <button type="button" class="btn btn-primary ml-auto mt-2"> Add new product</button></a> 
+</div>
+
+
+ <table class="table mt-5"id="admintable">
+   
+  
+    <thead class="thead-dark">
+      <tr>
+        <th>Productname</th>
+        <th>Image</th>
+        <th>color</th>
+         <th>Price</th>
+          <th>Category</th>
+          <th>Stock</th>
+            <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each products}}
+      <tr>
+        <td>{{this.name}}</td>
+        <td>
+         <img style="width: 50px; height: 50px;" src="/product-images/{{this._id}}.a.jpg">
+        </td>
+        <td>{{this.pid}}</td>
+         <td>{{this.PPrice}}</td>
+        <td>{{this.cat}}</td>
+        <td>{{this.pstock}}</td>
+    
+           <td>
+            
+                    
+                    {{!-- <a class="btn btn-danger" href="/admin/product-deletet/{{this._id}}"name="{{this.name}}"
+                        onclick="deleteproduct(event)"></a> --}}
+                        {{!-- <i class="fas fa-trash-alt"></i> --}}
+              
+                {{!-- <a href="/admin/product-delete/{{this._id}}" name="{{this.name}}"> <button type="submit" class="btn btn-danger"  onclick="deleteproduct(event)">DELETE</button></a>  --}}
+                 <a class="btn btn-danger" href="/admin/product-delete/{{this._id}}" name="{{this.name}}"
+                        onclick="deleteCategory(event)"><i class="fas fa-trash-alt"></i></a>
+
+             <a href="/admin/editproduct/{{this._id}}">  <button type="submit" class="btn btn-primary"> EDIT</button></a>
+               </td>
+      </tr>
+   
+       {{/each}}
+      
+    </tbody>
+    
+  </table>
+
+   
+ 

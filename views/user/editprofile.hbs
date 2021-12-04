@@ -1,0 +1,160 @@
+
+<style>
+
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #fff
+}
+
+.profile-button {
+    background: ##fff;
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #fff
+}
+
+.profile-button:focus {
+    background: ##fff;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: ##fff;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #fff;
+    cursor: pointer
+}
+</style>
+
+
+
+
+
+
+
+<div class="container rounded bg-white mt-5">
+    <div class="row">
+    
+        <div class="col-md-4 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="https://i.imgur.com/0eg0aG0.jpg" width="90"><span class="font-weight-bold">{{profiled.firstname}}{{profiled.lastname}}</span><span class="text-black-50">{{profiled.email}}</span><span>{{address.PIN}}</span></div>
+        </div>
+        <div class="col-md-8">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex flex-row align-items-center back"><i class="fa fa-long-arrow-left mr-1 mb-1"></i>
+                        <h6>Back to home</h6>
+                    </div>
+                  
+                </div>
+                    <form action="/edit-profile" method="post" enctype="multipart/form-data">
+                
+                <div class="row mt-2">
+                    <div class="col-md-6"><input type="text" name="name" class="form-control" placeholder="first name" value="{{profiled.firstname}}"></div>
+                    <div class="col-md-6"><input type="text" name="lastname" class="form-control" value="{{profiled.lastname}}" placeholder="last name"></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6"><input type="text" class="form-control" name="email" placeholder="Email" value="{{profiled.email}}"></div>
+                    <div class="col-md-6"><input type="text" class="form-control" name="number" value="{{profiled.mobile}}" placeholder="Phone number"></div>
+                </div>
+                {{!-- <div class="row mt-3">
+                    <div class="col-md-6"><input type="text" class="form-control" placeholder="address" value="D-113, right avenue block, CA,USA"></div>
+                    <div class="col-md-6"><input type="text" class="form-control" value="USA" placeholder="Country"></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6"><input type="text" class="form-control" placeholder="Bank Name" value="Bank of America"></div>
+                    <div class="col-md-6"><input type="text" class="form-control" value="043958409584095" placeholder="Account Number"></div>
+                </div> --}}
+
+
+  <div class="mt-5">
+    <label for="">IMAGE 1</label>
+    <img src="" alt="" style="width: 100px; height:auto" id="imgview5">
+    {{!-- <div id="preview1"></div> --}}
+    <input type="file" name="image" id="file5" class="form-control" onchange="return fileValidation5()">
+  </div>
+
+  <div class="col-12">
+    <div id="image-box5" style="width: 500px; height: 500px; display: none;"></div>
+    <button class="btn btn-primary mt-3" type="button" style="display: none;" id="crop-btn5">Crop</button>
+   
+  </div>
+
+
+ {{!-- <button id="confirm-btn5" type="submit" class="btn btn-primary">Edit prodile</button><br> --}}
+            
+                <div class="mt-5 text-right"><button  id="confirm-btn6" class="btn btn-primary" type="submit">Edit Profile</button></div>
+                    </form>
+            </div>
+        </div>
+    
+    </div>
+</div>
+  {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script> --}}
+<script>
+
+
+    function fileValidation5() {
+    const imagebox = document.getElementById('image-box5')
+    const crop_btn = document.getElementById('crop-btn5')
+    var fileInput = document.getElementById('file5');
+
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+        alert('Please upload file having extensions .jpeg only.');
+        fileInput.value = '';
+        return false;
+    } else {
+        //Image preview
+        const img_data = fileInput.files[0]
+        const url = URL.createObjectURL(img_data)
+        imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%">`
+        const image = document.getElementById('image')
+        document.getElementById('image-box5').style.display = 'block'
+        document.getElementById('crop-btn5').style.display = 'block'
+        document.getElementById('confirm-btn6').style.display = 'none'
+
+        const cropper = new Cropper(image, {
+            autoCropArea: 1,
+            viewMode: 1,
+            scalable: false,
+            zoomable: false,
+            movable: false,
+            aspectRatio: 16 / 19,
+            //  preview: '.preview',
+            minCropBoxWidth: 180,
+            minCropBoxHeight: 240,
+        })
+        crop_btn.addEventListener('click', () => {
+            cropper.getCroppedCanvas().toBlob((blob) => {
+                let fileInputElement = document.getElementById('file5');
+                let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                let container = new DataTransfer();
+
+                container.items.add(file);
+                const img = container.files[0]
+                var url = URL.createObjectURL(img)
+                fileInputElement.files = container.files;
+                document.getElementById('imgview5').src = url
+                document.getElementById('image-box5').style.display = 'none'
+                document.getElementById('crop-btn5').style.display = 'none'
+                  document.getElementById('confirm-btn6').style.display = 'none'
+               
+            });
+        });
+    }
+}
+
+  
+
+</script>
+
+  {{!-- document.getElementById('confirm-btn5').style.display = 'none' --}}
+ {{!-- document.getElementById('confirm-btn5').style.display = 'block' --}}
