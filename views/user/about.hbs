@@ -1,4 +1,37 @@
 
+																<a onclick="addtowishlist('{{this._id}}')">
+								<div class="cart_count" id="cart-count"><span class="" style="margin-bottom: ;"><i class="fa fa-heart" style="" aria-hidden="true"></i></span></div>
+							</a>
+
+<div class="desc">
+									
+									{{#if this.proOffer}}
+										<h2><a href="">{{this.name}}</a></h2>
+									<span class="price">{{this.price}}
+									<span class="stext-105 c13" style="color: brown;"><s>RS:{{this.actualPrice}}</s></span></span>
+									{{else}}
+									<h2><a href="">{{this.name}}</a></h2>
+									<span class="price">{{this.PPrice}}
+									
+									{{/if}}
+								</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<div class="colorlib-loader"></div>
 
 	<div id="page">

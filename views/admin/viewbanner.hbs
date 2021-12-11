@@ -23,7 +23,7 @@
         {{!-- <td>1</td> --}}
         {{!-- <td>{{this.logo}}</td> --}}
           <td>
-          <img style="width: 50px; height: 50px;" src="/banner-images/{{this._id}}.jpg">
+          <img style="width: 50px; height: 50px;" src="/banner-images/{{this._id}}.a.jpg">
         </td>
           <td>{{this.name}}</td>
             <td>{{this.description}}</td>
@@ -31,11 +31,9 @@
       
         <td>
            <a href="/admin/banner-edit/{{this._id}}">  <button type="submit" class="btn btn-primary"> Edit</button></a>
-            {{!-- <a href="/admin/brand-delete/{{this._id}}"><button type="submit" class="btn btn-danger" onclick="deleteBrand(event)"> Delete</button></a>  --}}
-               <a class="btn btn-danger" href="/admin/banner-delete/{{this._id}}" name="{{this.banner}}"
+               <a class="btn btn-danger" href="/admin/banner-delete/{{this._id}}" name="{{this.banner}}"  onclick="deletebanner(event)"
                         ><i class="fas fa-trash-alt"></i></a>
-{{!-- 
-onclick="deleteCategory(event)" --}}
+
 
   
         </td>
@@ -46,3 +44,6 @@ onclick="deleteCategory(event)" --}}
   </table>
   
 </div>
+
+
+

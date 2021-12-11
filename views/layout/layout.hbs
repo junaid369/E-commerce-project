@@ -14,28 +14,33 @@
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style1.css">
+  <link rel="stylesheet" href="assets/css/style1.css">
 
   {{!-- admin --}}
-   {{!-- <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet"> --}}
+  {{!--
+  <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet"> --}}
   <link rel="stylesheet" href="css/vaidationnew.css">
 
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/dash.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+    <link rel="stylesheet" href="/path/to/dist/css/image-zoom.css" />
   {{!-- otp --}}
-<style>
-  .error{
-    color: red;
-  }
-</style>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+
 
 
   {{#if userss}}
-    {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
+  {{!--
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script> --}}
-<link rel="stylesheet" href="css/singleproduct.css">
+  <link rel="stylesheet" href="css/singleproduct.css">
+   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/style.css">
   <!-- Animate.css -->
   <link rel="stylesheet" href="/css/animate.css">
@@ -61,7 +66,9 @@
 
   {{/if}}
   {{#if admin}}
-  ` <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
+
+  `
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
   {{/if}}
 
 </head>
@@ -75,7 +82,7 @@
 {{/if}}
 {{#if profile}}
 <link rel="stylesheet" href="/css/userprofile.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
 
 {{/if}}
 {{#if otp}}
@@ -90,6 +97,216 @@
 
   {{>user-header}}
   {{{body}}}
+  <style>
+    <style>
+  body {
+    font-family: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    background-color: #fff;
+
+    position: relative;
+  }
+
+  body:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+  }
+
+  body.offcanvas-menu:before {
+    opacity: 1;
+    z-index: 1002;
+    visibility: visible;
+  }
+
+  p {
+   
+    font-weight: 300;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6 {
+    font-family: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  a {
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+  }
+
+  a,
+  a:hover {
+    text-decoration: none !important;
+  }
+
+  .hero {
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  /* Header */
+  header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+    padding: 0px 0;
+  }
+
+  @media (min-width: 768px) {
+    header {
+      padding: 30px 0;
+    }
+  }
+
+  header .navbar-brand {
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    font-weight: 800;
+    font-size: 2rem;
+  }
+
+  header .navbar-brand.absolute {
+    position: absolute;
+  }
+
+  @media (max-width: 991.98px) {
+    header .navbar-brand.absolute {
+      position: relative;
+    }
+  }
+
+  header .navbar-brand span {
+    color: #fff;
+  }
+
+  @media (min-width: 768px) {
+    header .navbar-brand span {
+      color: #ced4da;
+    }
+  }
+
+  header .navbar {
+    background: black !important;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+  }
+
+  @media (min-width: 768px) {
+    header .navbar {
+      padding-top: 0;
+      padding-bottom: 0;
+      background: none !important;
+      position: relative;
+    }
+  }
+
+  header .navbar .nav-link {
+    padding: 1.7rem 1rem;
+    outline: none !important;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  @media (max-width: 1199.98px) {
+    header .navbar .nav-link {
+      padding: .5rem 0rem;
+    }
+  }
+
+  header .navbar .nav-link.active {
+    color: #fff !important;
+  }
+
+  header .navbar .dropdown-menu {
+    font-size: 14px;
+    border-radius: 4px;
+    border: none;
+    -webkit-box-shadow: 0 2px 30px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 30px 0px rgba(0, 0, 0, 0.2);
+    min-width: 13em;
+    margin-top: -10px;
+  }
+
+  header .navbar .dropdown-menu:before {
+    bottom: 100%;
+    left: 10%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-bottom-color: #fff;
+    border-width: 7px;
+  }
+
+  @media (max-width: 991.98px) {
+    header .navbar .dropdown-menu:before {
+      display: none;
+    }
+  }
+
+  header .navbar .dropdown-menu .dropdown-item:hover {
+    background: #007bff;
+    color: #fff;
+  }
+
+  header .navbar .dropdown-menu .dropdown-item.active {
+    background: #007bff;
+    color: #fff;
+  }
+
+  header .navbar .dropdown-menu a {
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+
+  header .navbar .cta-btn a {
+    background: #007bff;
+    color: #fff !important;
+    text-transform: uppercase;
+    font-size: .8rem;
+    padding: 15px 20px !important;
+    line-height: 1;
+    font-weight: bold;
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+  }
+
+  header .navbar .cta-btn a:hover {
+    background: #fff;
+    color: #007bff !important;
+    -webkit-box-shadow: 2px 0 30px -5px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 0 30px -5px rgba(0, 0, 0, 0.2);
+  }
+</style>
+  </style>
   {{/if}}
 
 
@@ -100,21 +317,26 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
     crossorigin="anonymous"></script>
-    {{!-- imgae zooming --}}
-<script src="/js/Nzoom.min.js"></script>
-{{!-- /image zooming --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  {{!-- imgae zooming --}}
+  <script src="/js/Nzoom.min.js"></script>
+
+
+
+    
+  {{!-- /image zooming --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+      <script src="/js/ajax.js"></script>
   <script type="text/javascript" charset="utf8"
     src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="/js/signupvalidation.js"></script>
-   <script src="/js/ajax.js"></script> 
-     <script src="/js/qty.js"></script> 
-       <script src="/js/custome.js"></script> 
-     
+
+  <script src="/js/qty.js"></script>
+  <script src="/js/custome.js"></script>
+
   <script>
 
   </script>
@@ -147,27 +369,29 @@
   {{!-- admin --}}
 
 
-
   {{#if admin}}
-  {{!-- ` <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css"> --}}
-  <script type="text/javascript" charset="utf8"
-    src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
- 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script>
+
 
   <script src="/js/signupvalidation.js"></script>
+
+  {{!-- `
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css"> --}}
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script>
 
 
   {{/if}}
   {{#if login}}
-  
+
   <script src="/js/signupvalidation.js"></script>
   {{/if}}
   {{#if sample}}
   <script src="/js/signupvalidation.js"></script>
 
   {{/if}}
-<script src="/js/signupvalidation.js"></script>
+  <script src="/js/signupvalidation.js"></script>
 
   {{!-- users --}}
   <script src="js/userdrop.js"></script>
@@ -196,7 +420,7 @@
   {{#if profile}}
   <script src="/js/signupvalidation.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script>
   {{/if}}
 
   {{#if sample}}
@@ -211,21 +435,21 @@
     crossorigin="anonymous"></script>
   <script>
 
-$(document).ready(function(){
-    $("#mobile").validate({
-    rules:{
-      
-      mobileNo:{
-            required:true,
-          maxlength:10
-          
-        },
-       
-      
-    }
-})
+    $(document).ready(function () {
+      $("#mobile").validate({
+        rules: {
 
-})
+          mobileNo: {
+            required: true,
+            maxlength: 10
+
+          },
+
+
+        }
+      })
+
+    })
 
 
     $(document).ready(function () {
@@ -339,6 +563,106 @@ $(document).ready(function(){
         }
       })
     }
+
+
+
+
+    function deleteaddresss(event) {
+      event.preventDefault();
+      var link = event.currentTarget.href;
+      var name = event.currentTarget.name;
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+          window.location = link;
+        }
+        else {
+          return false;
+
+        }
+      })
+    }
+
+
+
+
+    function deleteprooffer(event) {
+      event.preventDefault();
+      var link = event.currentTarget.href;
+      var name = event.currentTarget.name;
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+          window.location = link;
+        }
+        else {
+          return false;
+
+        }
+      })
+    }
+
+
+    
+    function deletebanner(event) {
+      event.preventDefault();
+      var link = event.currentTarget.href;
+      var name = event.currentTarget.name;
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+          window.location = link;
+        }
+        else {
+          return false;
+
+        }
+      })
+    }
+
+
+
+
+
   </script>
   <script>
 
@@ -351,3 +675,88 @@ $(document).ready(function(){
 </body>
 
 </html>
+{{!--
+
+function deleteaddress(event) {
+event.preventDefault();
+var link = event.currentTarget.href;
+var name = event.currentTarget.name;
+Swal.fire({
+title: 'Are you sure?',
+text: "Do you want to delete " + name,
+icon: 'warning',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Yes'
+}).then((result) => {
+if (result.isConfirmed) {
+Swal.fire(
+'Deleted!',
+'category has been deleted.',
+'success'
+
+)
+window.location = link;
+}
+else {
+return false;
+
+}
+})
+} --}}
+
+
+
+
+
+
+
+{{!-- 
+
+
+    function deleteaddresss(event) {
+      event.preventDefault();
+      var link = event.currentTarget.href;
+      var name = event.currentTarget.name;
+
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+
+      swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+          window.location = link;
+        } else if (
+          /* Read more 
+          about handling dismissals below */
+
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+
+            'Cancelled',
+            'Your imaginary file is safe :)',
+            'error'
+          )
+        }
+      })
+    } --}}
+

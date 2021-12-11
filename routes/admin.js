@@ -7,6 +7,7 @@ var router = express.Router();
 var db = require('../config/connection')
 var collection = require('../config/collection');
 const adminHelper = require('../helpers/admin-helpers');
+const userHelper = require('../helpers/user-helpers');
 let fs = require('fs');
 const { latestorders } = require('../helpers/admin-helpers');
 
@@ -63,7 +64,7 @@ router.get('/', async function(req, res, next) {
    console.log(latestorders,"night orders");
    console.log(latestorders.Total);
    console.log(Topproducts,"top products");
-   
+  // Profite
 console.log(Topproducts.brand);
     res.render('admin/dashboard', { admin: true,latestproduct,latestorders,userCount,productCount,AllMethods,Status,Topproducts })
   }
@@ -172,6 +173,7 @@ router.get('/blockedusers',async function (req, res, next) {
 
 
 router.get('/addproduct', verifyAdminLogin, async function (req, res, next) {
+
   let brand = await adminHelper.getAllbrands()
   let cat = await adminHelper.getAllcategory()
   console.log("hu imam unaiis");
@@ -272,7 +274,8 @@ router.get('/productview', function (req, res, next) {
 
 router.get('/viewcategory', function (req, res, next) {
   adminHelper.getAllcategory().then((cat) => {
-    res.render('admin/viewcategory', { admin: true, cat });
+    console.log(cat,"category");
+   res.render('admin/viewcategory', { admin: true, cat });
   })
 
 })
@@ -288,9 +291,6 @@ router.post('/addcategory', function (req, res, next) {
 
   res.redirect('/admin/viewcategory')
 });
-
-
-
 
 
 
@@ -370,25 +370,55 @@ router.get('/banner-management',async (req,res)=>{
 
 router.get('/add-banner',(req,res)=>{
   
-  res.render('admin/add-banner',{admin:true})
+  res.render('admin/add-banner',{admin:true,sample:true})
 
 })
+
+
+// first banner
 router.post('/add-banner',(req,res)=>{
   adminHelper.addbanner(req.body).then((id)=>{
     console.log(req.files);
-    let image=req.files.image8
-    image.mv('public/banner-images/' + id + '.jpg', (err, done) => {
+    // let image1=req.files.image8
+    // let image2=req.files.image9
+    // let image3=req.files.image10
+ 
+    // image1.mv('public/banner-images/'+ id + '.a.jpg'),
+    // image2.mv('public/banner-images/'+ id + '.b.jpg'),
+    // image3.mv('public/banner-images/'+ id + '.c.jpg'),
+ 
+
+    if (req.files.image8) {
+      let image1 = req.files.image8
+      image1.mv('public/banner-images/' + id + '.a.jpg')
+    }
+    if (req.files.image9) {
+      let image2 = req.files.image9
+      image2.mv('public/banner-images/' + id + '.b.jpg')
+    }
+    if (req.files.image10) {
+      let image3 = req.files.image10
+  
+      image3.mv('public/banner-images/' + id + '.c.jpg')
+    }
+     (err, done) => {
       if (!err) {
-        res.redirect('/admin//banner-management')
+        res.redirect('/admin/banner-management')
       }
       else {
      
-        res.redirect('/admin/addbanner')
+        res.redirect('/admin/banner-management')
       }
-    })
+     }
   })
   
 })
+
+
+
+
+
+
 
 router.get('/banner-edit/:id', verifyAdminLogin, async (req, res) => {
 
@@ -396,7 +426,7 @@ router.get('/banner-edit/:id', verifyAdminLogin, async (req, res) => {
 console.log("hy brands  thanks for visit");
  let  banner= await adminHelper.getbannerDetails(bannerID)
  console.log(banner,"kms");
- res.render('admin/banner-edit', { admin: true,banner})
+ res.render('admin/banner-edit', { admin: true,banner,sample:true})
 })
 
 router.post('/edit-banner/:id', verifyAdminLogin, (req, res) => {
@@ -405,29 +435,32 @@ router.post('/edit-banner/:id', verifyAdminLogin, (req, res) => {
   let id = req.params.id
   console.log(req.body,"hy junaid");
   res.redirect('/admin/banner-management')
-  let image = req.files.image8
-  image.mv('public/banner-images/' + id + '.jpg')
+  let image1=req.files.image8
+  let image2=req.files.image9
+  let image3=req.files.image10
+ 
+
+  image1.mv('public/banner-images/' + id +'.a.jpg')
+  image2.mv('public/banner-images/' + id + '.b.jpg')
+  image3.mv('public/banner-images/' + id + '.c.jpg')
+
+
 
  
 
  })
- 
-  //  res.redirect('/admin/viewbanner')
- 
- 
- 
+
 })
+
+
+
+
 router.get('/banner-delete/:id', verifyAdminLogin, (req, res) => {
   let bannerID = req.params.id
   adminHelper.deletebanner(bannerID).then((response) => {
     res.redirect('/admin/banner-management')
   })
 })
-
-
-
-
-
 
 
 
@@ -478,6 +511,221 @@ router.get('/placed/:id', (req, res) => {
   adminHelper.changeOrderStatus(req.params.id,  Status).then(() => {
     res.redirect('/admin/orders')
   })
+})
+
+
+
+// offer manaagnment
+router.get('/product-offers',async(req,res)=>{
+  console.log("in offfer");
+  let products = await adminHelper.getAllproducts()
+  let productOffers = await adminHelper.getAllProOffers()
+  res.render('admin/viewproductoffers',{admin:true,products,productOffers,sample:true})
+
+})
+
+router.post('/product-offers', verifyAdminLogin, (req, res) => {
+  console.log(req.body);
+  adminHelper.addProductOffer(req.body).then(() => {
+    res.redirect('/admin/product-offers')
+  })
+})
+
+
+
+
+router.get('/edit-proOffer/:id', verifyAdminLogin, async function (req, res, next) {
+  let id = req.params.id
+  let products = await adminHelper.getAllproducts()
+  adminHelper.getProOffersDetails(id).then((proOffer) => {
+    res.render('admin/edit-proOffers', { admin: true, proOffer, products, "bannerExist": req.session.brandExist });
+  })
+});
+
+
+router.post('/edit-proOffer/:id', verifyAdminLogin, async (req, res) => {
+  let id = req.params.id
+  adminHelper.updateProOffer(id, req.body).then((response) => {
+    res.redirect('/admin/product-offers')
+
+
+  })
+
+})
+
+router.get('/delete-proOffer/:id', verifyAdminLogin, (req, res) => {
+  let id = req.params.id
+  adminHelper.deleteProOffer(id).then((response) => {
+
+    res.redirect('/admin/product-offers')
+  })
+})
+
+
+
+// coupon offer
+router.get('/coupon-offer',async(req,res)=>{
+  Coupon=await adminHelper.getAllcoupons()
+  res.render('admin/viewcouponoffers',{admin:true,Coupon, "couponExist": req.session.couponExist})
+  req.session.couponExist = false
+})
+
+// router.post('/coupon-offers', (req, res) => {
+//   console.log(req.body);
+//   adminHelper.addcoupon(req.body).then(() => {
+//     res.redirect('/admin/coupon-offer')
+//   })
+// })
+
+
+router.post('/add-coupon', verifyAdminLogin,async (req, res) => {
+  
+  await adminHelper.addcoupon(req.body).then(() => {
+    res.redirect('/admin/coupon-offer')
+  }).catch((err) => {
+    if (err.code == 11000) {
+      req.session.couponExist = true
+      res.redirect('/admin/coupon-offer')
+
+    }
+  })
+})
+
+
+router.get('/edit-CouponOffer/:id', verifyAdminLogin, async function (req, res, next) {
+  console.log("BBBBBBBbbbb");
+  let id = req.params.id
+  console.log("in edit coupon");
+  // let products = await adminHelper.getAllproducts()
+  console.log("hear edit coupon");
+  adminHelper.getCouponDetails(id).then((coupon) => {
+    console.log("heara lat stage in coupon");
+ 
+    res.render('admin/edit-couponoffer', { admin: true, coupon , "bannerExist": req.session.couponExist });
+  })
+})
+
+
+
+
+router.post('/edit-coupon/:id', verifyAdminLogin, (req, res) => {
+  console.log("in first edit coupon");
+  let id = req.params.id
+  console.log(id,"its your param id");
+  adminHelper.updatecoupon(id, req.body).then((response) => {
+    console.log("in coupon edit post");
+    res.redirect('/admin/coupon-offer')
+
+
+  })
+
+})
+
+
+router.get('/delete-coupon/:id', verifyAdminLogin, (req, res) => {
+  let id = req.params.id
+  adminHelper.deleteCoupon(id).then((response) => {
+
+    res.redirect('/admin/coupon-offer')
+  })
+})
+
+
+
+
+// ,,,,,,,,,,,
+
+
+
+
+// router.post('/edit-coupon/:id', verifyAdminLogin, async (req, res) => {
+//   let id = req.params.id
+//   adminHelpers.updtaeCoupon(id, req.body).then((response) => {
+//     res.redirect('/admin/coupons')
+
+//   })
+
+// })
+
+// router.get('/delete-coupon/:id', verifyAdminLogin, (req, res) => {
+//   let id = req.params.id
+//   adminHelpers.deleteCoupon(id).then(() => {
+//     res.redirect('/admin/coupons')
+//   })
+// })
+
+
+
+
+
+
+// category offres
+
+
+router.get('/category-offers', verifyAdminLogin, async (req, res) => {
+  let category = await adminHelper.getAllcategory()
+  console.log("hear i category");
+  let catOffers = await adminHelper.getAllCatOffers()
+  console.log(catOffers,"offers");
+  console.log("last in catgeory");
+  res.render('admin/category-offer', { admin: true, category, catOffers,"catOfferExist":req.session.catOfferExist })
+  req.session.catOfferExist = false
+})
+
+
+
+
+
+router.post('/category-offers', verifyAdminLogin, (req, res) => {
+  console.log(req.body);
+  adminHelper.addCategoryOffer(req.body).then(() => {
+    res.redirect('/admin/category-offers')
+  }).catch((err) => {
+    if (err.code == 11000) {
+      req.session.catOfferExist = true
+      res.redirect('/admin/category-offers')
+
+    }
+  })
+})
+
+
+router.get('/edit-catOffer/:id', verifyAdminLogin, async function (req, res, next) {
+  let id = req.params.id
+  let category = await adminHelper.getAllcategory()
+  adminHelper.getCatOfferDetails(id).then((catOffer) => {
+    res.render('admin/edit-catOffers', { admin: true, catOffer, category, "bannerExist": req.session.brandExist });
+  })
+});
+
+
+router.post('/edit-catOffer/:id', verifyAdminLogin, async (req, res) => {
+  let id = req.params.id
+  adminHelper.updateCatOffer(id, req.body).then((response) => {
+    res.redirect('/admin/category-offers')
+
+
+  })
+
+})
+
+router.get('/delete-catOffer/:id', verifyAdminLogin, (req, res) => {
+  let id = req.params.id
+  adminHelper.deleteCatOffer(id).then((response) => {
+
+    res.redirect('/admin/category-offers')
+  })
+})
+
+
+
+
+
+
+// sales report
+
+router.get('/salesreport',(req,res)=>{
+  res.render('admin/salesreport',{admin:true,sales:true})
 })
 
 

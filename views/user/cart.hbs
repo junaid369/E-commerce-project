@@ -1,230 +1,268 @@
-	 
-	
+
+
+
+
 
 
 
 
 
 <style>
-	@media (min-width: 1025px) {
-.h-custom {
-height: 100vh !important;
-}
+
+
+.title {
+    margin-bottom: 5vh
 }
 
-.card-registration .select-input.form-control[readonly]:not([disabled]) {
-font-size: 1rem;
-line-height: 2.15;
-padding-left: .75em;
-padding-right: .75em;
+.card {
+    margin: auto;
+    max-width: 950px;
+    width: 90%;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1rem;
+    border: transparent
 }
 
-.card-registration .select-arrow {
-top: 13px;
+@media(max-width:767px) {
+    .card {
+        margin: 3vh auto
+    }
 }
 
-.bg-grey {
-background-color: #eae8e8;
+.cart {
+    background-color: #fafafa;
+    padding: 4vh 5vh;
+    border-bottom-left-radius: 1rem;
+    border-top-left-radius: 1rem
 }
 
-@media (min-width: 992px) {
-.card-registration-2 .bg-grey {
-border-top-right-radius: 16px;
-border-bottom-right-radius: 16px;
-}
+@media(max-width:767px) {
+    .cart {
+        padding: 4vh;
+        border-bottom-left-radius: unset;
+        border-top-right-radius: 1rem
+    }
 }
 
-@media (max-width: 991px) {
-.card-registration-2 .bg-grey {
-border-bottom-left-radius: 16px;
-border-bottom-right-radius: 16px;
+.summary {
+    background-color: #ddd;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: 4vh;
+    color: rgb(65, 65, 65)
 }
+
+@media(max-width:767px) {
+    .summary {
+        border-top-right-radius: unset;
+        border-bottom-left-radius: 1rem
+    }
+}
+
+.summary .col-2 {
+    padding: 0
+}
+
+.summary .col-10 {
+    padding: 0
+}
+
+.row {
+    margin: 0
+}
+
+.title b {
+    font-size: 1.5rem
+}
+
+.main {
+    margin: 0;
+    padding: 2vh 0;
+    width: 100%
+}
+
+.col-2,
+.col {
+    padding: 0 1vh
+}
+
+a {
+    padding: 0 1vh
+}
+
+.close {
+    margin-left: auto;
+    font-size: 0.7rem
+}
+
+img {
+    width: 3.5rem
+}
+
+.back-to-shop {
+    margin-top: 4.5rem
+}
+
+h5 {
+    margin-top: 4vh
+}
+
+hr {
+    margin-top: 1.25rem
+}
+
+form {
+    padding: 2vh 0
+}
+
+select {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1.5vh 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247)
+}
+
+input {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247)
+}
+
+input:focus::-webkit-input-placeholder {
+    color: transparent
+}
+
+.btn {
+    background-color: #000;
+    border-color: #000;
+    color: white;
+    width: 100%;
+    font-size: 0.7rem;
+    margin-top: 4vh;
+    padding: 1vh;
+    border-radius: 0
+}
+
+.btn:focus {
+    box-shadow: none;
+    outline: none;
+    box-shadow: none;
+    color: white;
+    -webkit-box-shadow: none;
+    -webkit-user-select: none;
+    transition: none
+}
+
+.btn:hover {
+    color: white
+}
+
+a {
+    color: black
+}
+
+a:hover {
+    color: black;
+    text-decoration: none
+}
+
+#code {
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253), rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: center
 }
 </style>
 
 
-<section class="h-100 h-custom" style="background-color: #fff; bo">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12">
-        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
-          <div class="card-body p-0">
-            <div class="row g-0">
-              <div class="col-lg-8">
-                <div class="p-5">
-                  <div class="d-flex justify-content-between align-items-center mb-5">
-                    <h3 class="fw-bold mb-0 text-black">Shopping Cart</h3>
-                    <h6 class="mb-0 text-muted">3 items</h6>
-                  </div>
-
-
-				  	{{#each products}}
-					
-					<div class="row border-top border-bottom">
-						<div class="row main align-items-center">
-							<div class="col-2"><img class="img-fluid" src="/product-images/{{this.product._id}}.a.jpg"></div>
-							<div class="col">
-								<div class="row text-muted">{{this.product.name}}</div>
-								<div class="row">Cotton T-shirt</div>
-							</div>
-							
-
-
-
-							<td class="column-4" style="justify-content: space-evenly;">
-
-								<button class="cart-item-count-mr-3" style="border: none; width: 50px;"
-									onclick="ChangeQty('{{this._id}}','{{this.product._id}}',-1)">-</button><br><br>
-								<span id="{{this.product._id}}">{{this.quantity}}</span>
-
-								<button class="cart-item-count-mr-3" style="width: 50px;"
-									onclick="ChangeQty('{{this._id}}','{{this.product._id}}',1)">+</button>
-							</td>
-
-
-						
-							<div class="col ml-3" style="">{{this.product.PPrice}}
-							
-						<span> <button style="color: seashell; width: fit-content; " class="btn btn-danger  ml-5 mb-2"  
-											onclick="deleteProCart('{{this._id}}','{{this.product._id}}')">Remove</button></span>
-								 </div>
-						</div>
-					</div>
 
 
 
 
-					{{/each}}
-                
+
+
+<div class="card">
+    <div class="row">
+        <div class="col-md-8 cart">
+            <div class="title">
+                <div class="row">
+                    <div class="col">
+                        <h4><b>Shopping Cart</b></h4>
+                    </div>
+                    <div class="col align-self-center text-right text-muted">{{cartcount}} items</div>
                 </div>
-              </div>
-              <div class="col-lg-4 bg-grey">
-                <div class="p-5">
-                  <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
-                  <hr class="my-4">
-
-                  <div class="d-flex justify-content-between mb-4">
-                    <h5 class="text-uppercase">items 3</h5>
-                    <h5>€ 132.00</h5>
-                  </div>
-
-                  <h5 class="text-uppercase mb-3">Shipping</h5>
-
-                  {{!-- <div class="mb-4 pb-2">
-                    <select class="select">
-                      <option value="1">Standard-Delivery- €5.00</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                      <option value="4">Four</option>
-                    </select>
-                  </div> --}}
-
-                
-
-                 
-
-                  <hr class="my-4">
-
-                  <div class="d-flex justify-content-between mb-5">
-                    <h5 class="text-uppercase">Total price</h5>
-                    <h5>{{total}}</h5>
-                  </div>
-
-	{{!-- <div class=" mr-auto" style="margin-top: 7rem; margin-right: 8rem;" >
-							<a href="/place-order">	<button  class="btn btn-danger" type="submit" value="Place order">Checkout</button></a>
-							</div> --}}
-                  <a   href="/place-order" type="button" id="subTotal" class="btn btn-dark btn-block btn-lg"
-                    data-mdb-ripple-color="dark">Checkout</a>
-						<div class="back-to-shop"><a href="/">&leftarrow;</a><span class="text-muted">Back to shop</span>
-					
-
-                </div>
-              </div>
             </div>
-          </div>
+            {{#each products}}
+            <div class="row border-top border-bottom">
+                <div class="row main align-items-center">
+                    <div class="col-2"><img class="img-fluid"  src="/product-images/{{this.product._id}}.a.jpg"></div>
+                    <div class="col">
+                        <div class="row text-muted">Shirt</div>
+                        <div class="row">{{this.product.name}}</div>
+                        <div class="row">RS:{{this.product.PPrice}}</div>
+                          
+                    </div>
+                    {{!-- <div class="col"> <a href=""  onclick="ChangeQty('{{this._id}}','{{this.product._id}}',-1)" >-</a><a href="#"  onclick="ChangeQty('{{this._id}}','{{this.product._id}}',1)" class="border">1</a><a href="">+</a> </div> --}}
+                         <td class="column-4" style="justify-content: space-evenly;">
+
+                        <button class="cart-item-count-mr-3"      id="{{this.product._id}}a" style="border: none; width: 30px;"
+                          onclick="ChangeQty('{{this._id}}','{{this.product._id}}',-1)">-</button><br><br>
+                        <span id="{{this.product._id}}">{{this.quantity}}</span>
+
+                        <button class="cart-item-count-mr-3" style="width: 30px;"
+                          onclick="ChangeQty('{{this._id}}','{{this.product._id}}',1)">+</button>
+                      </td>
+
+
+                         {{!-- <div class="col mt-2">
+                                   
+                                        <span class="" id="subTotal{{this.product._id}}">
+                                            {{this.subtotal}}<span class="close mt-2"  onclick="deleteProCart('{{this._id}}','{{this.product._id}}')">&#10005;</span>
+                                        </span>
+                                 
+                                </div> --}}
+
+
+                    <div class="col ml-3" id="subTotal{{this.product._id}}">{{this.subtotal}}</div> 
+                         <span class="close mt-2"  onclick="deleteProCart('{{this._id}}','{{this.product._id}}')">&#10005;</span>
+                </div>
+            </div>
+            {{/each}}
+            
+         
+            <div class="back-to-shop "><a href="/">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
         </div>
-      </div>
+        <div class="col-md-4 summary">
+            <div>
+                <h5><b>Summary</b></h5>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col" style="padding-left:0;">ITEMS {{cartcount}}</div>
+                {{!-- <div class="col text-right">RS:{{total}}</div> --}}
+            </div>
+            <form>
+                <p>SHIPPING</p> <select>
+                    <option class="text-muted">Standard-Delivery- RS:0.00</option>
+                </select>
+                {{!-- <p>GIVE CODE</p> <input id="code" placeholder="Enter your code"> --}}
+            </form>
+            <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                <div class="col">TOTAL PRICE</div>
+                <div class="col text-right" id="Total">{{total}}</div>
+        
+            </div> <a  class="btn" href="/place-order">CHECKOUT</a>
+        </div>
     </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-
-
+</div>
 
 
 <script>
-	function ChangeQty(cartId, proId, count) {
 
-    let quantity = parseInt(document.getElementById(proId).innerHTML)
-	console.log(quantity)
-    count = parseInt(count)
-  
 
-    $.ajax({
 
-			
-        url: '/change-product-quantity',
-        data: {
-            cart: cartId,
-            product: proId,
-            count: count,
-            quantity: quantity
-
-        },
-        method: 'post',
-        success: (response) => {
-            console.log(response)
-    
-            if (response.removeProduct) {
-
-                location.reload()
-            } else {
-    
-    
-                document.getElementById(proId).innerHTML = quantity + count
-				document.getElementById('subTotal'+proId).innerHTML=response.subTotal
-                
-            }
-    
-        }
-    
-    }
-    )
-
-}
-</script>
-<script>
-
-	function deleteProCart(cart, prodId, proId) {
-		$.ajax({
-			url: '/delete-cart-item',
-			data: {
-				cartId: cart,
-				proId: prodId
-
-			},
-			method: 'post',
-			success: (response) => {
-				if (response.removeProduct) {
-					console.log("hello ew")
-				
-					
-					location.reload()
-					document.getElementById(proId + 'row').hidden = true
-					
-
-				}
-				if (response.cartEmpty) {
-					alert("The item has been removed")
-					location.reload()
-				}
-			}
-		})
-	}
-</script>

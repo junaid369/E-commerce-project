@@ -132,7 +132,7 @@
                      <a href="/editaddress/{{this._id}}" class="class=btn btn-success text-center" type="submit"  style=" width: 13rem; height: 30px; color: white; border: none; " value="Edit" >Edit</a> 
                     </div>
                              <div class="mt-2" >
-                      <a href="/delete-address/{{this._id}}"  class="class=btn btn-danger text-center" type="submit" style="width: 13rem; height: 30px; border: none; color: white;" >Delete</a>
+                      <a href="/delete-address/{{this._id}}" onclick="deleteaddresss(event)"  class="class=btn btn-danger text-center" type="submit" style="width: 13rem; height: 30px; border: none; color: white;" >Delete</a>
                     </div>
                       {{!-- <a href="/admin/editproduct/{{this._id}}">  <button type="submit" class="btn btn-primary"> EDIT</button></a> --}}
               
@@ -170,6 +170,29 @@
  </form>
  
 </div> 
+
+
+
+<script>
+
+    Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )
+  }
+})
+</script>
 
 <script>
    
@@ -228,6 +251,37 @@
 }
 
   
+
+</script>
+<script>
+
+
+	function deleteProCart(id) {
+		$.ajax({
+			url: '/delete-cart-item',
+			data: {
+				cartId: cart,
+				proId: prodId
+
+			},
+			method: 'post',
+			success: (response) => {
+				if (response.removeProduct) {
+					console.log("hello ew")
+				
+					
+					location.reload()
+					document.getElementById(proId + 'row').hidden = true
+					
+
+				}
+				if (response.cartEmpty) {
+					alert("The item has been removed")
+					location.reload()
+				}
+			}
+		})
+	}
 
 </script>
 

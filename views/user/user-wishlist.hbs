@@ -157,7 +157,7 @@
 <html>
 
 <head>
-    <title>Shopping Cart</title>
+   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -181,16 +181,16 @@
                                 <div class="product">
                                     <div class="row">
                                         {{#each wishlist}}
-                                        <div class="col-md-3">
-                                            <img class="img-fluid mx-auto d-block image" src="/product-images/{{this.product._id}}.a.jpg" style="height:200px; width: 200px;">
+                                        <div class="col-md-3 mt-5">
+                                            <img class="img-fluid" src="/product-images/{{this.product._id}}.a.jpg" style="">
                                         </div>
                                         <div class="col-md-8">
                                             <div class="info">
                                                 <div class="row">
-                                                    <div class="col-md-5 product-name">
+                                                    <div class="col-md-6 product-name ">
                                                         <div class="product-name">
                                                             <a href="#">{{this.product.name}}</a>
-                                                            <a href=""  onclick="deletewish('{{this._id}}','{{this.product._id}}')"><i class="fas fa-trash ml-auto" style="color: red;"></i></a>
+                                                            <a href=""  onclick="deletewish('{{this._id}}','{{this.product._id}}')" ><i class="fas fa-trash ml-auto" style="color: red;"></i></a>
                                                             <div class="product-info">
                                                                 <div>Brand: <span class="value">{{this.product.brand}}</span></div>
                                                                 <div>size: <span class="value">{{this.product.size}}</span></div>
@@ -198,10 +198,10 @@
                                                                 <div>Price: <span class="value">{{this.product.PPrice}}</span></div>
                                                             </div>
                                                         </div>
-                                                                     <div class="row">
-                                                        <a  href="/buyNow/{{this.product._id}}" type="button" class="btn btn-secondary ml-3" style="background-color: #1643E0; text-decoration: none;  width: 100px;">BUY</a>
-                                                        <a href="/wishadd-to-cart/{{this.product._id}}" type="button" class="btn btn-secondary" style="background-color: #E8B32A; width:100px; text-decoration: none;" >Add To cart</a>
-                                                        </div>
+                                                                     {{!-- <div class="row"> --}}
+                                                        <a  href="/buyNow/{{this.product._id}}" type="button" onclick="deletewishlist{{this._id}}" class="btn btn-secondary ml-3" style="background-color: #1643E0; text-decoration: none;  width: 100px;">BUY</a>
+                                                        <a href="/wishadd-to-cart/{{this.product._id}}" type="button" class="btn btn-secondary ml-3" style="background-color: #E8B32A; width:100px; text-decoration: none;" >Add To cart</a>
+                                                        {{!-- </div> --}}
                                                     </div>
                                  
                                             </div>
@@ -227,23 +227,9 @@
 </body>
 
 </html>
-
-
 <script>
-	
-
-    function addtowishlist(proId) {
-   
     
-    $.ajax({
-        
-        url: "/add-to-wishlist/"+proId,
-        method: 'get',
-        success: (response) => {
-            alert("added")
-          
-        }
-    })
-}
+  
 
 </script>
+

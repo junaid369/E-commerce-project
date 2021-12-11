@@ -7,11 +7,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var db = require('./config/connection')
 var fileupload=require('express-fileupload')
+require('dotenv').config()
 const paypal=require('paypal-rest-sdk')
 paypal.configure({
   'mode': 'sandbox', //sandbox or live
-  'client_id': 'AQN2bn3AGCn7xlNEF_i6tO2AfOmx5ydxNK99wQv6-Fg95tiCoJDAwP02AQ0gd3h1omS41DQx-XlMSw5w',
-  'client_secret': 'EHFU9HOYzn9y5HHUwVK4-TcAXTT73S0gtxdPry_HEgkpXf7R3CMQY9cQU8jheEKVrmywTuwWNs2i3jDQ'
+  'client_id':process.env.client_id,
+  'client_secret': process.env.client_secret
 });
 
 

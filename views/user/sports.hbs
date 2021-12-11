@@ -1,0 +1,58 @@
+
+
+
+
+			<div class="container">
+				<div class="row">
+					{{#each sportsItems}}
+					<div class="col-lg-3 p-4">
+
+						<div class="product-grid">
+
+							<div class="product-image">
+								<a href="/singleproduct/{{this._id}}" class="image">
+									<img class="pic-1 " src="/product-images/{{this._id}}.a.jpg">
+									<img class="pic-2" src="/product-images/{{this._id}}.b.jpg">
+								</a>
+
+
+
+								<a href="" onclick="addtowishlist('{{this._id}}')" class="product-like-icon"
+									data-tip="Add to Wishlist">
+									<i class="far fa-heart"></i>
+								</a>
+								<ul class="product-links">
+
+									<li><a href="" onclick="addtocart('{{this._id}}')"><i
+												class="fas fa-shopping-cart"></i></a></li>
+									<li><a href="/singleproduct/{{this._id}}"><i class="fa fa-eye"></i></a></li>
+								</ul>
+							</div>
+
+
+							{{#if this.proOffer}}
+							<div class="product-content">
+								<h3 class="title"><a href="#">{{this.name}}</a></h3>
+								<div class="price">{{this.price}}
+
+									<span class="" style="color: brown;"><s>RS:{{this.actualPrice}}</s></span>
+									<a href="/buyNow/{{this._id}}" class="ml-5">Buy Now</a>
+								</div>
+							</div>
+							{{else}}
+							<div class="product-content">
+								<h3 class="title"><a href="#">{{this.name}}</a></h3>
+								<div class="price">{{this.PPrice}}
+									<a href="/buyNow/{{this._id}}" class="ml-5">Buy Now</a>
+								</div>
+							</div>
+							{{/if}}
+
+
+
+						</div>
+					</div>
+
+					{{/each}}
+				</div>
+			</div>

@@ -10,7 +10,7 @@
       <tr>
         <th>No</th>
         <th>category Name</th>
-        {{!-- <th>Scategory</th> --}}
+        <th>Scategory</th>
         <th>Options</th>
       </tr>
     </thead>
@@ -19,20 +19,20 @@
     <tbody> {{#each cat}}
       <tr>
         <td>{{@index}}</td>
-        <td>{{this.categories}}</td>
-        {{!-- <td> --}}
+        <td>{{this.category}}</td>
+        <td> 
 
-          {{!-- <ul>
-            {{#each scategory}}
+          <ul>
+            {{#each Scategory}}
             <li>
               {{this}}
-            </li> --}}
+            </li> 
 
-            {{!-- {{/each}} --}}
-          {{!-- </ul> --}}
+            {{/each}} 
+          </ul> 
 
 
-        {{!-- </td> --}}
+        </td>
 
 
 

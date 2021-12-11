@@ -360,7 +360,389 @@ $(document).ready(function(){
 })
 
 
+$(document).ready(function(){
+    $("#editprofile").validate({
+    rules:{
+        name:{
+           
+            required:true
+            
+        },
+        lastname:{
+            required:true
+          
+        },
+        email:{
+            required:true
 
+        },
+        number:{
+            required:true
+
+        },
+    },
+      
+    
+
+    submitHandler: function submitForm(form) {
+        console.log(form)
+        swal.fire({
+            title: "Are you sure?",
+            text: "This form will be submitted",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((isOkay) => {
+            if (isOkay) {
+                console.log("isokay")
+                form.submit();
+            }
+        });
+        return false;
+    }
+
+})
+
+})
+
+
+
+// profile address
+
+
+$(document).ready(function(){
+    $("#profileaddress").validate({
+    rules:{
+        FirstName:{
+           
+            required:true
+            
+        },
+        LastName:{
+            required:true
+          
+        },
+        House:{
+            required:true
+
+        },
+        Street:{
+            required:true
+
+        },
+        Town:{
+            required:true
+
+        },
+        PIN:{
+            required:true
+
+        },
+    },
+      
+    
+
+    submitHandler: function submitForm(form) {
+        console.log(form)
+        swal.fire({
+            title: "Are you sure?",
+            text: "This form will be submitted",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((isOkay) => {
+            if (isOkay) {
+                console.log("isokay")
+                form.submit();
+            }
+        });
+        return false;
+    }
+
+})
+
+})
+
+
+
+
+$(document).ready(function(){
+    $("#editaddress").validate({
+    rules:{
+        FirstName:{
+           
+            required:true
+            
+        },
+        LastName:{
+            required:true
+          
+        },
+        House:{
+            required:true
+
+        },
+        Street:{
+            required:true
+
+        },
+        Town:{
+            required:true
+
+        },
+        PIN:{
+            required:true
+
+        },
+    },
+      
+    
+
+    submitHandler: function submitForm(form) {
+        console.log(form)
+        swal.fire({
+            title: "Are you sure?",
+            text: "This form will be submitted",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((isOkay) => {
+            if (isOkay) {
+                console.log("isokay")
+                form.submit();
+            }
+            
+        });
+        return false;
+    }
+    
+
+})
+
+})
+
+$(document).ready(function(){
+    $("#password").validate({
+    rules:{
+        current:{
+           
+            required:true
+            
+        },
+        password1:{
+            required:true
+          
+        },
+        password2:{
+            required:true
+
+        },
+
+    },
+    
+    submitHandler: function submitForm(form) {
+        console.log(form)
+        swal.fire({
+            title: "Are you sure?",
+            text: "This form will be submitted",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((isOkay) => {
+            if (isOkay) {
+                console.log("isokay")
+                form.submit();
+            }
+            window.location = link;
+            
+        });
+        return false;
+    }
+    
+})
+
+})
+
+
+
+
+
+
+$(document).ready(function(){
+    $("#editaddress").validate({
+    rules:{
+        FirstName:{
+           
+            required:true
+            
+        },
+        LastName:{
+            required:true
+          
+        },
+        House:{
+            required:true
+
+        },
+        Street:{
+            required:true
+
+        },
+        Town:{
+            required:true
+
+        },
+        PIN:{
+            required:true
+
+        },
+    },
+      
+    
+
+    submitHandler: function submitForm(form) {
+        console.log(form)
+        swal.fire({
+            title: "Are you sure?",
+            text: "This form will be submitted",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((isOkay) => {
+            if (isOkay) {
+                console.log("isokay")
+                form.submit();
+            }
+            
+        });
+        return false;
+    }
+    
+
+})
+
+})
+
+
+
+
+
+
+
+
+$(document).ready(function(){
+    $("#banner2").validate({
+    rules:{
+        name:{
+           
+            required:true
+            
+        },
+        description:{
+            required:true
+
+        },
+      
+        title1:{
+           
+            required:true
+            
+        },
+        title2:{
+            required:true
+          
+        },
+        title3:{
+            required:true
+
+        },
+        link:{
+            required:true
+
+        },
+        imge8:{
+            required:true
+
+        },
+    },
+        submitHandler: function submitForm(form) {
+            console.log(form)
+            swal.fire({
+                title: "Are you sure?",
+                text: "This form will be submitted",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((isOkay) => {
+                if (isOkay) {
+                    console.log("isokay")
+                    form.submit();
+                }
+
+                
+            });
+            return false;
+        }
+        
+    
+    })
+    
+    })
+
+
+
+    $(document).ready(function(){
+        $("#productPage").validate({
+        rules:{
+            choose:{
+                
+                required:true
+                
+            },
+            Starting:{
+                required:true,
+                
+            },
+            Expiry:{
+                
+                required:true
+                
+            },
+            Offer:{
+                required:true,
+                
+            },
+           
+          
+        }
+    })
+    
+    })
+
+
+
+
+
+
+
+
+// Swal.fire({
+//     title: 'Are you sure?',
+//     text: "You won't be able to revert this!",
+//     icon: 'warning',
+//     showCancelButton: true,
+//     confirmButtonColor: '#3085d6',
+//     cancelButtonColor: '#d33',
+//     confirmButtonText: 'Yes, delete it!'
+//   }).then((result) => {
+//     if (result.isConfirmed) {
+//       Swal.fire(
+//         'Deleted!',
+//         'Your file has been deleted.',
+//         'success'
+//       )
+//     }
+//   })
 
 // function fileValidation1() {
 //     const imagebox = document.getElementById('image-box')
