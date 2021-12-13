@@ -7,8 +7,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var db = require('./config/connection')
 var fileupload=require('express-fileupload')
-var util= require('util');
-var encoder = new util.TextEncoder('utf-8');
+// var util= require('util');
+// var encoder = new util.TextEncoder('utf-8');
 require('dotenv').config()
 const paypal=require('paypal-rest-sdk')
 paypal.configure({
