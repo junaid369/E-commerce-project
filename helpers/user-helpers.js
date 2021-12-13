@@ -1,7 +1,7 @@
 
 var db = require('../config/connection')
 var collection = require('../config/collection')
-// const bcrypt = require('')
+const bcrypt = require('')
 var bcrypt = require('bcryptjs');
 const objectId = require('mongodb').ObjectID
 const { resolve, reject } = require('promise')
