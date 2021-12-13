@@ -75,7 +75,7 @@
       <div class="position-relative">
         <div class="card p-2 text-center">
           <h6>Please enter the one time password <br> to verify your account</h6>
-          {{!-- <div> <span>A code has been sent to</span> <small>*******9897</small> </div> --}}
+   
           <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> <input
               class="m-2 text-center form-control rounded" name="otp" type="text" id="first" maxlength="1" /> <input
               class="m-2 text-center form-control rounded" name="otp" type="text" id="second" maxlength="1" /> <input
@@ -92,8 +92,10 @@
               <span class="d-block mobile-text" id="resend1"></span></a>
 
           </div>
-          {{#if invalidotp}}
-          <h6 class="" style="color: red;">invalid otp</h6>
+          {{#if invalid}}
+        <div class="alert alert-danger" role="alert">
+  Invalid otp!
+</div>
           {{/if}}
 
      

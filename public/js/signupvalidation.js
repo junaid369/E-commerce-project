@@ -20,31 +20,34 @@ $(document).ready(function(){
         },
         password:{
             required:true,
-            minlength:4
+            maxlength:6,
+            minlength:6
         }
 
     }
 })
 
 })
+
+
 $(document).ready(function(){
     $("#userLoginvalidation").validate({
     rules:{
         mobile:{
-            minlength:3,
-            required:true
-            
+            maxlength:10,
+            required:true  
         },
       password:{
             required:true,
-            minlength:3
+            minlength:6,
+            maxlength:6
         },
-       
-      
     }
 })
-
 })
+
+
+
 $(document).ready(function(){
     $("#adminlogin").validate({
     rules:{
@@ -92,20 +95,20 @@ $(document).ready(function(){
 
 // })
 
-$(document).ready(function(){
-    $("#signupotp").validate({
-    rules:{
+// $(document).ready(function(){
+//     $("#signupotp").validate({
+//     rules:{
       
-      otp:{
-            required:true,
+//       otp:{
+//             required:true,
         
-        },
+//         },
        
       
-    }
-})
+//     }
+// })
 
-})
+// })
 
 
 
@@ -521,6 +524,10 @@ $(document).ready(function(){
 
 })
 
+
+
+    
+
 $(document).ready(function(){
     $("#password").validate({
     rules:{
@@ -530,11 +537,15 @@ $(document).ready(function(){
             
         },
         password1:{
-            required:true
+            required:true,
+            minlength:6,
+            maxlength:6
           
         },
         password2:{
-            required:true
+            required:true,
+            minlength:6,
+            maxlength:6
 
         },
 
@@ -719,6 +730,27 @@ $(document).ready(function(){
     
     })
 
+
+    $(document).ready(function(){
+        $("#setpassword").validate({
+        rules:{
+   
+            password1:{
+                required:true,
+                minlength:6,
+                maxlength:6
+              
+            },
+            password2:{
+                required:true,
+                minlength:6,
+                maxlength:6
+    
+            },
+    
+        }
+    })
+    })
 
 
 

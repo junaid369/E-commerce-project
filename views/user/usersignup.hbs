@@ -38,7 +38,7 @@
                         <label class="d-flex flex-row align-items-center" for="password"> Enter your mobile number
                         
                         </label>
-                        <input type="number" class="form-control" required="" id="number" name="mobile" value="">
+                        <input type="number" class="form-control" required="" id="number" onkeydown="return event.keyCode !==69" name="mobile" value="">
                     </div>
                        <div class="form-group required col-lg-12">
                         <label class="d-flex flex-row align-items-center" for="password"> Enter your Password
@@ -61,7 +61,7 @@
                     </div>
                 </form>
                 <p class="small-xl pt-3 text-center">
-                    <span class="text-muted"> Already have an account? </span>
+                 <a href="/login" style="border-style: none;"> <span class="text-muted"> Already have an account? </span></a>  
         
                 </p>
             </div>

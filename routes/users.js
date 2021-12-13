@@ -108,6 +108,7 @@ router.get('/add-to-cart/:id', async (req, res) => {
   await userHelper.addTocart(req.params.id, req.session.user._id).then(() => {
     userHelper.getcartcount(req.session.user._id).then((cartcount) => {
       console.log(cartcount);
+      console.log(response,"<<<");
       res.json({ status: true, cartcount })
     })
   })
@@ -662,6 +663,9 @@ router.get('/add-new-add', (req, res) => {
   let user = req.session.user
   res.render('user/add-new-add', { userss: true, user })
 })
+
+
+
 router.post('/addNewAddress', (req, res) => {
 
 
@@ -671,6 +675,40 @@ router.post('/addNewAddress', (req, res) => {
   })
 
 })
+
+
+
+//buy add new address
+
+
+router.get('/buyaddaddress', (req, res) => {
+
+  let user = req.session.user
+  res.render('user/buyaddNewaddress', { userss: true, user })
+})
+
+router.post('/addNewBuyAddress', (req, res) => {
+
+
+  userHelper.addNewBuyAddress(req.body).then((response) => {
+
+    res.redirect('/buyNow')
+  })
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 router.get('/orders', async (req, res) => {
   let user = req.session.user
   let id = req.session.user._id
@@ -769,21 +807,10 @@ router.get('/loginotp', (req, res) => {
     res.redirect('/')
   } else {
 
-    res.render('user/loginotp', { login: true, otp: true })
+    res.render('user/loginotp', { login: true, otp: true ,"invalid":req.session.invalidOtp })
+    req.session.invalidOtp=false;
   }
 })
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -818,7 +845,7 @@ router.post('/loginotp', (req, res) => {
         console.log("error");
         req.session.invalidOtp = true
         console.log("otp comiing hear");
-        res.redirect('/user/loginotp')
+        res.redirect('/loginotp')
       }
 
     }).catch((err) => {
@@ -1109,8 +1136,7 @@ router.get('/edit-profile/:id', verifyUserLogin, async (req, res) => {
 // change password
 router.get('/change-password', verifyUserLogin, async (req, res) => {
   let user = req.session.user
-  // let brand = await userHelper.getBrands()
-  // let homePro = await userHelper.getHomeProducts()
+
   let cartCount = null
   if (req.session.user) {
     console.log("hy in ");
@@ -1150,19 +1176,21 @@ router.post('/password-change', verifyUserLogin, (req, res) => {
 })
 
 
+//forget password
 
 router.get('/forget-passwordmo', (req, res) => {
   console.log("hy in yiru forget password");
-  res.render('user/forget-otp', { login: true, "mobile": req.session.noUserMobile, sample: true })
+  res.render('user/forget-passwordmo', { login: true, "mobile": req.session.noUserMobile, sample: true })
   req.session.noUserMobile = false
   console.log("hy its over");
 })
 router.get('/forgetotp', (req, res) => {
-  res.render('user/forget-otp', { login: true, sample: true, "invalidotp": req.session.invalidOtp })
-  req.session.invalidOtp = false
+  res.render('user/forget-otp', { login: true, sample: true, "invalid": req.session.invalidotp  })
+  req.session.invalidotp = false
   console.log("hy in  y o  ur forget otp");
 
 })
+
 // forget mobile otp
 
 router.post('/forgetotp', (req, res) => {
@@ -1202,7 +1230,9 @@ router.post('/forgetotp', (req, res) => {
 });
 router.get('/recoverpassword', (req, res) => {
   console.log("are you come in m recovr message");
-  res.render('user/passwordrecover', { login: true, sample: true })
+
+  res.render('user/passwordrecover', { login: true, sample: true, "passwordnotsame": req.session.pswdNotSame  })
+  req.session.pswdNotSame=false
 })
 
 router.post('/recoverpassword', (req, res) => {
@@ -1232,9 +1262,9 @@ router.post('/recoverpassword', (req, res) => {
 
       } else {
         console.log("error");
-        req.session.invalidOtp = true
-        console.log("otp comiing hear");
-        res.redirect('/user/forgetotp')
+        req.session.invalidotp = true
+   
+        res.redirect('/forgetotp')
       }
 
     }).catch((err) => {
@@ -1265,15 +1295,11 @@ router.post('/change-password', verifyUserLogin, (req, res) => {
   console.log(pass1, " ", pass2);
   if (pass1 == pass2) {
     userHelper.changePassword(id, req.body).then((response) => {
-      if (response.status) {
         console.log(response);
         req.session.userloggedIn = false
         req.session.user = null
         res.redirect('/login')
-      } else {
-        req.session.invalidpswd = true
-        res.redirect('/recoverpassword')
-      }
+ 
 
 
     })
@@ -1283,6 +1309,7 @@ router.post('/change-password', verifyUserLogin, (req, res) => {
   }
 
 })
+
 
 
 

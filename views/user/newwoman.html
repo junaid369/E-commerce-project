@@ -274,3 +274,26 @@
 //   }
 
 //   else {
+
+
+
+	<!-- forget otp -->
+	router.post('/change-password',verifyUserLogin, (req, res) => {
+		let id = req.session.user._id
+		let pass1 = req.body.password1
+		let pass2 = req.body.password2
+	  
+		if (pass1 == pass2) {
+		  userHelper.changePassword(id, req.body).then((response) => {
+			req.session.userLoggedIn = false
+			req.session.user = null
+			res.redirect('/login')
+		  })
+		} else {
+		  req.session.notSame = true
+	  
+		  res.redirect('/recoverpassword')
+		}
+	  })
+	  
+	  

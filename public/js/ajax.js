@@ -12,7 +12,6 @@
 
 
   
-
 function addtocart(proId) {
     const Toast = Swal.mixin({
         toast: true,
@@ -34,7 +33,7 @@ function addtocart(proId) {
         success: (response) => {
             Toast.fire({
                 icon: 'success',
-                title: 'Signed in successfully'
+                title: 'item add to cart'
               })
             if (response.status) {
                 document.getElementById("cart-count").innerHTML = response.cartcount
@@ -44,9 +43,6 @@ function addtocart(proId) {
         }
     })
 }
-
-
-
 
 
 

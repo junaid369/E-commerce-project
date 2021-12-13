@@ -4,13 +4,13 @@
     <form method=""  action=""  enctype=''>
         <div class="row">
 
-            <div class="col-md-4">
+            <div class="col-md-4" style="background-color: white;">
                 <div class="profile-img">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                    <img src=""
                         alt="" />
-                    <div class="file btn btn-lg btn-primary">
+                    <div class="file btn btn-lg btn-primary" style="background-color: white;">
                         Change Photo
-                        <input type="file" name="file" />
+                        <input type="file" name="file"  style="color: white;"/>
                     </div>
                 </div>
 
@@ -41,14 +41,12 @@
 							<a href="/edit-profile/{{userdetails._id}}" class="btn btn-primary">Edit profile</a>
 							</div>
                     
-            {{!-- <div class="col-md-2">
-               <a href="user/edit-profile"> <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"></a>
-            </div> --}}
+   
         </div>
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-work">
-                    <p>WORK LINK</p>
+                    <p>Settings</p>
                     <a href="/orders">My Orders</a><br />
                     {{!-- <a href="">Add new Address</a><br /> --}}
                     <a href="/change-password">Change password</a>
@@ -106,7 +104,7 @@
         <div class="col-md-3" style="">
 
         
-            <div class="card mt-4" style="height: 16rem;">
+            <div class="card mt-4" style="">
 
                 <h4 class="text-center mt-3">Your address</h4>
 
@@ -122,11 +120,7 @@
                     {{!-- <a href="#" class="card-link">Card link</a>
                     <a href="#" class="card-link">Another link</a> --}}
                     </div>
-                 {{!-- <div class="" style="margin-top: 30px; ">
- <button type="button" class="btn btn-success" style="margin-left: -20px">EditAddress</button>
- <button type="button" class="btn btn-danger"  style="width: 7rem;">Delete</button>
-
-                    </div> --}}
+ 
                     <div class="" style="">
                         {{!-- <a href="/editaddress/{{this._id}}">Edit</a> --}}
                      <a href="/editaddress/{{this._id}}" class="class=btn btn-success text-center" type="submit"  style=" width: 13rem; height: 30px; color: white; border: none; " value="Edit" >Edit</a> 
@@ -134,8 +128,7 @@
                              <div class="mt-2" >
                       <a href="/delete-address/{{this._id}}" onclick="deleteaddresss(event)"  class="class=btn btn-danger text-center" type="submit" style="width: 13rem; height: 30px; border: none; color: white;" >Delete</a>
                     </div>
-                      {{!-- <a href="/admin/editproduct/{{this._id}}">  <button type="submit" class="btn btn-primary"> EDIT</button></a> --}}
-              
+                     
                 </div>
 
             </div>

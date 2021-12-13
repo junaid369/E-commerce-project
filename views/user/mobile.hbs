@@ -25,7 +25,8 @@ input[type=number]::-webkit-outer-spin-button {
     
          <div class="form-group pt-1">  
            {{#if mobile}}
-           <h6 class="" style="color: red;">invalid number</h6>
+           
+            <div class="alert alert-danger" role="alert">Invalid number</div>
            {{/if}}
       <button class="btn btn-primary btn-block" type="submit">GET OTP</button>  
                   </div>   

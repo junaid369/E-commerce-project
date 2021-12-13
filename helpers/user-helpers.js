@@ -277,9 +277,9 @@ module.exports = {
                 let cartobj = {
 
                     user: ObjectId(userId),
-                    // products:[proobj]
+                 
                     products: [proobj]
-                    // products:[ObjectId(proId)]
+               
                 }
 
 
@@ -627,6 +627,41 @@ getTotalAmount: (userId) => {
 //     },
     
     addNewAddress: (details) => {
+        console.log(details.User);
+
+        return new Promise(async (resolve, reject) => {
+            let user = await db.get().collection(collection.USER_COLLECTION).findOne({ _id: ObjectId(details.User) })
+            details._id = new (ObjectId)
+            console.log(details._id);
+            if (user.address) {
+                db.get().collection(collection.USER_COLLECTION).updateOne({ _id: ObjectId(details.User) }, {
+                    // $set:{
+                    //     _id:new(ObjectId)
+
+                    // },
+                    $push: {
+                        address: details,
+
+                    }
+                }).then(() => {
+                    resolve()
+                })
+            } else {
+                console.log('on else');
+
+                addr = [details]
+                db.get().collection(collection.USER_COLLECTION).updateOne({ _id: ObjectId(details.User) }, {
+                    $set: {
+                        address: addr,
+                    }
+                }).then((user) => {
+                    resolve(user)
+                })
+            }
+
+        })
+    },
+    addNewBuyAddress: (details) => {
         console.log(details.User);
 
         return new Promise(async (resolve, reject) => {
@@ -1034,7 +1069,7 @@ getTotalAmount: (userId) => {
     },
     changePassword: (Id, data) => {
         return new Promise(async (resolve, reject) => {
-            let response = {}
+        
 
             let p1 = data.password1
             let p2 = data.password2
@@ -1043,10 +1078,6 @@ getTotalAmount: (userId) => {
 
                 data1 = await bcrypt.hash(data.password1, 10)
 
-                bcrypt.compare(data.current, user.password).then((status) => {
-                    if (status) {
-                        console.log(status);
-                        response.status = true
                         db.get().collection(collection.USER_COLLECTION).updateOne({ _id: ObjectId(Id) }, {
                             $set: {
                                 password: data1
@@ -1054,21 +1085,21 @@ getTotalAmount: (userId) => {
                         }).then(() => {
                             resolve(response)
                             console.log(response, "then");
-                        })
-                    } else {
-                        response.status = false
-                        resolve(response)
-                        console.log("current password is invalid");
-                    }
-                })
+                        }
+                        )
+                    
+                
+             
 
 
 
 
             }
 
-        })
-    },
+      
+    })
+},
+
     buyproduct: (id) => {
         console.log(id, "shwo the id");
         return new Promise(async (resolve, reject) => {

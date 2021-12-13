@@ -25,17 +25,17 @@ module.exports = {
 
 
                 if (adminData.password == admin.password) {
-                    console.log("login success");
+                   
                     responseAdmin.admin = admin
                     responseAdmin.status = true
                     resolve(responseAdmin)
                 } else {
-                    console.log("Login Failed");
+                   
                     resolve({ status: false })
                 }
 
             } else {
-                console.log("Failed");
+               
                 resolve({ status: false })
             }
         })
@@ -57,8 +57,7 @@ module.exports = {
     },
     deletebrands: (proID) => {
         return new Promise((resolve, reject) => {
-            // console.log(proID);
-            // console.log(objectId(adminData));
+          
             db.get().collection(collection.BRAND_COLLECTION).deleteOne({ _id: ObjectId(proID) }).then((response) => {
                 console.log(ObjectId);
                 resolve(response)
@@ -66,34 +65,7 @@ module.exports = {
         })
     },
 
-    // addcategory: (adminData) => {
-    //     return new Promise(async (resolve, reject) => {
-
-
-    //         let cat = await db.get().collection(collection.CATEGORY_COLLECTION).findOne({ categories: adminData.cname })
-    //         if (cat) {
-
-    //             // await db.get().collection(collection.CATEGORY_COLLECTION).updateOne({categories:adminData.cname},{$push:{scategory:adminData.sname}})
-    //             await db.get().collection(collection.CATEGORY_COLLECTION).updateOne({ categories: adminData.cname }).then((response) => {
-
-    //             })
-    //             resolve()
-    //         }
-    //         else {
-    //             await db.get().collection(collection.CATEGORY_COLLECTION).insertOne({ categories: adminData.cname }).then((response) => {
-
-
-    //                 console.log(response);
-
-
-    //             })
-    //         }
-
-    //     })
-
-
-    // },
-
+  
 
 
 
@@ -110,7 +82,7 @@ module.exports = {
             } else {
                 db.get().collection(collection.CATEGORY_COLLECTION).insertOne({ category: data.cname, Scategory: [data.sname] }).then((response) => {
 
-                    // console.log(response);
+                   
 
                     resolve(response)
                 })
@@ -140,9 +112,7 @@ module.exports = {
         })
     },
     addproduct: (adminData) => {
-        console.log(adminData.PPrice,"total");
-      
-     
+       
         return new Promise(async (resolve, reject) => {
           adminData.PPrice=parseInt(adminData.PPrice)
             db.get().collection(collection.PRODUCT_COLLECTION).insertOne(adminData).then((response) => {
@@ -159,8 +129,6 @@ module.exports = {
     },
     deleteproducts: (prID) => {
         return new Promise((resolve, reject) => {
-            // console.log(proID);
-            // console.log(objectId(adminData));
             db.get().collection(collection.PRODUCT_COLLECTION).deleteOne({ _id: ObjectId(prID) }).then((response) => {
                 console.log(ObjectId);
                 resolve(response)
@@ -183,7 +151,6 @@ module.exports = {
                         cat: productData.cat,
                         brand: productData.brand,
                         pprice: productData.pprice,
-                        //  pid:productData.pid,
                         color: productData.pid,
                         size: productData.size,
                         pstock: productData.pstock,
@@ -236,8 +203,7 @@ module.exports = {
                     }
                 }).then((response) => {
                     resolve(response)
-                    console.log("Response helper");
-                    console.log(response);
+            
                 })
         })
     },
@@ -260,8 +226,7 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             let blockedUsers = await db.get().collection(collection.USER_COLLECTION).find({ status: false }).toArray()
             resolve(blockedUsers)
-            console.log("it sreal");
-            console.log(blockedUsers, "hy 777777777777777777777");
+          
         })
 
     },
@@ -272,13 +237,13 @@ module.exports = {
                 resolve(user)
 
             } else {
-                console.log("else");
+              
                 resolve(false)
             }
         })
     },
     blockUser: (Id, userData) => {
-        console.log("hy are you still al ive");
+     
         return new Promise((resolve, reject) => {
             db.get().collection(collection.USER_COLLECTION).updateOne({ _id: ObjectId(Id) },
                 {
@@ -287,7 +252,7 @@ module.exports = {
                     }
                 }).then((response) => {
                     resolve(response)
-                    console.log(response, "reskhgfyufiuy");
+                   
                 })
         })
     },
@@ -300,7 +265,7 @@ module.exports = {
                     }
                 }).then((response) => {
                     resolve(response)
-                    console.log(response, "res");
+                   
                 })
         })
     },
@@ -334,7 +299,7 @@ module.exports = {
                 {
                     $project: {
                         item: 1, qty: 1, product: { $arrayElemAt: ['$Products', 0] },
-                        // subtotal: { $multiply: [{ $arrayElemAt: ["$product.Price", 0] }, "$qty"] }
+                      
 
 
                     }
@@ -342,7 +307,7 @@ module.exports = {
                 }
 
             ]).toArray()
-            console.log(orderItem, "0");
+          
             resolve(orderItem)
         })
     },
@@ -368,7 +333,7 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             let banners = await db.get().collection(collection.BANNER_COLLECTION).find().toArray()
             resolve(banners)
-            console.log(banners);
+        
         })
 
     },
@@ -384,7 +349,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             db.get().collection(collection.BANNER_COLLECTION).findOne({ _id: ObjectId(bannerId) }).then((banner) => {
                 resolve(banner)
-                console.log(banner, "00000000000");
+            
             })
         })
     },
@@ -403,22 +368,20 @@ module.exports = {
                     }
                 }).then((response) => {
                     resolve(response)
-                    console.log("Response helper");
-                    console.log(response);
+                  
                 })
         })
     },
     deletebanner: (bannerID) => {
         return new Promise((resolve, reject) => {
-            // console.log(proID);
-            // console.log(objectId(adminData));
+            
             db.get().collection(collection.BANNER_COLLECTION).deleteOne({ _id: ObjectId(bannerID) }).then((response) => {
-                console.log(ObjectId);
+              
                 resolve(response)
             })
         })
     },
-    // admin ash board
+    // admin  dashboard
     latestProduct: () => {
         return new Promise(async (resolve, reject) => {
             let latestProduct = await db.get().collection(collection.PRODUCT_COLLECTION).find().sort({ $natural: -1 }).limit(5).toArray()
@@ -496,7 +459,7 @@ module.exports = {
             ]).toArray()
             let CODlen = CodProduct.length
             Methods.push(CODlen)
-            console.log(CODlen, "))))))))))");
+         
 
             let PaypalProduct = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
                 {
@@ -507,7 +470,7 @@ module.exports = {
             ]).toArray()
             let PayPallen = PaypalProduct.length
             Methods.push(PayPallen)
-            console.log(PayPallen, "paypal");
+       
 
             let RazorpayProduct = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
                 {
@@ -522,7 +485,7 @@ module.exports = {
             Methods.push(Razorpaylen)
 
             resolve(Methods)
-            console.log(Methods, ">>>>>>>>>");
+         
 
 
 
@@ -543,7 +506,7 @@ module.exports = {
             ]).toArray()
             let Pendinglen = Pending.length
             status.push(Pendinglen)
-            console.log(Pendinglen, "ab");
+           
 
             let Placed = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
                 {
@@ -554,7 +517,7 @@ module.exports = {
             ]).toArray()
             let Placedlen = Placed.length
             status.push(Placedlen)
-            console.log(Placedlen, "bc");
+          
 
             let Shipped = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
                 {
@@ -565,7 +528,7 @@ module.exports = {
             ]).toArray()
             let Shippedlen = Shipped.length
             status.push(Shippedlen)
-            console.log(Shippedlen, "ed");
+         
 
 
             let Delivered = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
@@ -577,7 +540,7 @@ module.exports = {
             ]).toArray()
             let Deliveredlen = Delivered.length
             status.push(Deliveredlen)
-            console.log(Deliveredlen, "mk");
+           
 
             let Cancelled = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
                 {
@@ -590,7 +553,7 @@ module.exports = {
             status.push(Cancelledlen)
 
             resolve(status)
-            console.log(status, "po");
+           
 
 
 
@@ -652,20 +615,20 @@ module.exports = {
 
 
             resolve(data)
-            console.log(data, "your top products");
+         
 
         })
     },
     addProductOffer: (data) => {
         return new Promise(async (resolve, reject) => {
             let product = await db.get().collection(collection.PRODUCT_COLLECTION).findOne({ name: data.Product })
-            console.log(product.PPrice);
-            console.log(data.Offer);
+          
+           
             data.Offer = parseInt(data.Offer)
             let actualPrice = product.PPrice
             let newPrice = (((product.PPrice) * (data.Offer)) / 100)
             newPrice = newPrice.toFixed()
-            console.log("newPrice", newPrice);
+        
             db.get().collection(collection.PRODUCT_OFFERS).insertOne(data).then((response) => {
                 db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ name: data.Product },
                     {
@@ -691,7 +654,8 @@ module.exports = {
         return new Promise((resolve, reject) => {
             db.get().collection(collection.PRODUCT_OFFERS).findOne({ _id: ObjectId(id) }).then((proOffer) => {
                 resolve(proOffer)
-                console.log(proOffer, "in edit offers");
+               
+                
             })
         })
     },
