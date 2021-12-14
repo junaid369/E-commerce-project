@@ -1128,44 +1128,90 @@ console.log(buyproduct.PPrice,"yourprice");
    },
    
 
-    addTowishlist: (proId, userId) => {
-        console.log("are you in wish");
-        let wishobj = {
-            item: ObjectId(proId),
+    // addTowishlist: (proId, userId) => {
+    //     console.log("are you in wish");
+    //     let wishobj = {
+    //         item: ObjectId(proId),
+    //     }
+    //     console.log("cart abc");
+    //     return new Promise(async (resolve, reject) => {
+    //         let userwishlist = await db.get().collection(collection.WISHLIST_COLLECTION).findOne({ user: ObjectId(userId) })
+    //         console.log("cart is no more");
+    //         if (userwishlist) {
+    //             db.get().collection(collection.WISHLIST_COLLECTION).updateOne({ user: ObjectId(userId) },
+    //                 {
+    //                     $push: { products: wishobj }
+    //                 }
+    //             )
+    //                 .then((response) => {
+    //                     resolve(response)
+    //                 })
+    //             console.log("hy its final");
+
+    //         } else {
+
+    //             let wishlistobj = {
+
+    //                 user: ObjectId(userId),
+
+    //                 products: [wishobj]
+
+    //             }
+
+
+    //             db.get().collection(collection.WISHLIST_COLLECTION).insertOne(wishlistobj).then((response) => {
+    //                 resolve(response)
+    //                 console.log(response);
+    //                 console.log("cart still alive");
+
+    //             })
+
+    //         }
+    //     })
+    // },
+
+
+
+
+
+    addToWishlist: (proId, userId) => {
+        let wishObj = {
+            item: objectId(proId)
         }
-        console.log("cart abc");
         return new Promise(async (resolve, reject) => {
-            let userwishlist = await db.get().collection(collection.WISHLIST_COLLECTION).findOne({ user: ObjectId(userId) })
-            console.log("cart is no more");
-            if (userwishlist) {
-                db.get().collection(collection.WISHLIST_COLLECTION).updateOne({ user: ObjectId(userId) },
-                    {
-                        $push: { products: wishobj }
-                    }
-                )
-                    .then((response) => {
-                        resolve(response)
-                    })
-                console.log("hy its final");
-
-            } else {
-
-                let wishlistobj = {
-
-                    user: ObjectId(userId),
-
-                    products: [wishobj]
-
+            let userWish = await db.get().collection(collection.WISHLIST_COLLECTION).findOne({ user: objectId(userId) })
+            if (userWish) {
+                let proExist = await userWish.products.findIndex(product => product.item == proId)
+                if (proExist != -1) {
+                    db.get().collection(collection.WISHLIST_COLLECTION).updateOne({ user: objectId(userId) },
+                        {
+                            $pull: {
+                                products: { item: objectId(proId) }
+                            }
+                        }).then((response) => {
+                            console.log("pulled");
+                            resolve({ pulled: true })
+                        })
+                } else {
+                    db.get().collection(collection.WISHLIST_COLLECTION).updateOne({ user: objectId(userId) },
+                        {
+                            $push: {
+                                products: wishObj
+                            }
+                        }).then(() => {
+                            console.log("pushed");
+                            resolve({ pushed: true })
+                        })
                 }
-
-
-                db.get().collection(collection.WISHLIST_COLLECTION).insertOne(wishlistobj).then((response) => {
+            } else {
+                let wish = {
+                    user: objectId(userId),
+                    products: [wishObj]
+                }
+                db.get().collection(collection.WISHLIST_COLLECTION).insertOne(wish).then((reponse) => {
                     resolve(response)
-                    console.log(response);
-                    console.log("cart still alive");
-
+                    console.log(" Craeted new wishlist");
                 })
-
             }
         })
     },

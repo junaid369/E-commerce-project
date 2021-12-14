@@ -571,7 +571,7 @@ router.get('/wishlist', verifyUserLogin, async (req, res) => {
   let wishlist = await userHelper.getwishitems(req.session.user._id)
   console.log(wishlist, "your wishlist");
   let wishcount = await userHelper.getwishcount(req.session.user._id)
-  console.log(wishcount, "count");
+  console.log(wishcount, "countnnnnnnnnnn");
   if (wishcount == 0) {
     res.render('user/clear-wishlist', { userss: true, user: req.session.user })
   }
@@ -583,6 +583,34 @@ router.get('/wishlist', verifyUserLogin, async (req, res) => {
 
 
 })
+
+
+
+// router.get('/wishlist', verifyUserLogin, async (req, res) => {
+
+
+
+//   let user = req.session.user
+//   let cartCount = null
+//   if (req.session.user) {
+//     let Id = req.session.user._id
+//     cartCount = await userHelper.getCartCount(Id)
+//   }
+//   userHelper.getwishitems(req.session.user._id).then(async (wishlistProducts) => {
+//     let len = wishlistProducts.length
+//     if (len > 0) {
+//       res.render('user/wishlist', {   user, cartCount, brand, homePro, wishlistProducts })
+//     } else {
+//       res.render('user/empty-wishlist', { homeCategory, cartCount, userPage: true, brand, homePro, user })
+//     }
+//   })
+// })
+
+
+
+
+
+
 
 
 router.get('/cart', verifyUserLogin, async (req, res) => {
@@ -604,20 +632,34 @@ router.get('/cart', verifyUserLogin, async (req, res) => {
 
 
 
+
+
+
 router.get('/add-To-wishlist/:id', async (req, res) => {
-  user = req.session.user
-  console.log("oncea gain");
-  await userHelper.addTowishlist(req.params.id, req.session.user._id).then((response) => {
-    console.log("incart");
-    userHelper.getwishcount(req.session.user._id).then((wishcount) => {
-      // console.log("clarifaicration");
-      console.log(wishcount, "count");
-      res.json({ status: true, wishcount })
 
-
+  let pId = await req.params.id
+  if (req.session.userloggedIn) {
+    let user = await req.session.user._id
+    console.log("in wishist count");
+    userHelper.addToWishlist(pId, user).then((response) => {
+      console.log("out of function");
+      if (response.pulled) {
+        res.json({ pulled: true })
+      } else {
+        res.json(response)
+      }
     })
-  })
+  } else {
+    console.log("no user");
+    res.json({ status: true })
+  }
 })
+
+
+
+
+
+
 router.post('/delete-wish-item', (req, res) => {
   let wishtId = req.body.wishlist
   let wishId = req.body.products

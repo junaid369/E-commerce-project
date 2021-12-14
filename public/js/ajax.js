@@ -1,16 +1,3 @@
-
-
-// function addtocart(proId){
-//     $.ajax({
-//         url:'/add-to-cart/'+proId,
-//         method:'get',
-//         success:(response)=>{
-//             alert(response)
-//         }
-//     })
-// }
-
-
   
 function addtocart(proId) {
     const Toast = Swal.mixin({
@@ -43,6 +30,47 @@ function addtocart(proId) {
         }
     })
 }
+
+
+
+function addtowishlist(proId) {
+  
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+    $.ajax({
+        url: '/add-To-wishlist/' + proId,
+     
+        method: 'get',
+        success: (response) => {
+          
+            if (response.pulled) {
+                Toast.fire({
+                    icon: 'error',
+                    title: 'item removed from Wishlist'
+                })
+
+            } else if (response.status) {
+                location.replace('/login')
+            } else {
+                Toast.fire({
+                    icon: 'success',
+                    title: 'item added to Wishlist'
+                })
+            }
+        }
+    })
+}
+
 
 
 
@@ -184,20 +212,19 @@ function deleteProCart(cart, prodId, proId) {
 
 	
 
-    function addtowishlist(proId) {
+//     function addtowishlist(proId) {
    
     
-    $.ajax({
+//     $.ajax({
         
-        url: "/add-to-wishlist/"+proId,
-        method: 'get',
-        success: (response) => {
-            alert("addedgbgfbg")
+//         url: "/add-To-wishlist/"+proId,
+//         method: 'get',
+//         success: (response) => {
           
-        }
-    })
-}
-
+          
+//         }
+//     })
+// }
 
 
 
