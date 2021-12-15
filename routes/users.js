@@ -80,9 +80,13 @@ router.get('/', async function (req, res, next) {
 
 router.get('/women', async (req, res) => {
   let products = await adminHelper.getAllproducts()
+   userHelper.getcartcount(req.session.user._id).then((cartcount)=>{
+    res.render('user/women', { "user": req.session.user, userss: true, products,cartcount })
+  })
+  
 
-  res.render('user/women', { "user": req.session.user, userss: true, products })
-})
+   })
+
 
 
 router.get('/cart', verifyUserLogin, async (req, res) => {
@@ -252,8 +256,8 @@ router.post('/place-order', async (req, res) => {
           "payment_method": "paypal"
         },
         "redirect_urls": {
-          "return_url": "http://localhost:4000/success",
-          "cancel_url": "http://localhost:4000/cancelled"
+          "return_url": "http://localhost:3000/success",
+          "cancel_url": "http://localhost:3000/cancelled"
         },
         "transactions": [{
           "item_list": {
@@ -416,8 +420,8 @@ router.post('/buy-Now', async (req, res) => {
           "payment_method": "paypal"
         },
         "redirect_urls": {
-          "return_url": "http://localhost:4000/success",
-          "cancel_url": "http://localhost:4000/cancelled"
+          "return_url": "http://localhost:3000/success",
+          "cancel_url": "http://localhost:3000/cancelled"
         },
         "transactions": [{
           "item_list": {

@@ -61,7 +61,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-6"><input type="text" class="form-control" name="email" placeholder="Email" value="{{profiled.email}}"></div>
-                    <div class="col-md-6"><input type="text" class="form-control" name="number" value="{{profiled.mobile}}" placeholder="Phone number"></div>
+                    <div class="col-md-6"><input type="text" class="form-control" onkeydown="return event.keyCode !==69" minlength="10" maxlength="10" name="number" value="{{profiled.mobile}}" placeholder="Phone number"></div>
       
                 <div class="mt-5 text-right"><button  id="" class="btn btn-primary" type="submit">Edit Profile</button></div>
                     </form>
