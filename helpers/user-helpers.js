@@ -1310,14 +1310,31 @@ console.log(buyproduct.PPrice,"yourprice");
 
 
 
-    couponValidate: (data) => {
+    couponValidate: (data,user) => {
         return new Promise(async (resolve, reject) => {
-            console.log(data, "shabith");
+            console.log(data,"mj");
             obj = {}
             let date = new Date()
             date = moment(date).format('DD/MM/YYYY')
-            let coupon = await db.get().collection(collection.COUPON_OFFERS).findOne({ Coupon: data.CouponCode })
+            console.log("data=",data);
+            let coupon = await db.get().collection(collection.COUPON_OFFERS).findOne({ CouponCode: data.Coupon})
+            console.log(coupon);
             if (coupon) {
+
+                let users = coupon.Users
+                let userChecker = users.includes(user)
+                if (userChecker) {
+                    obj.couponUsed = true
+                    console.log("Already used");
+                    resolve(obj)
+                }
+                else{
+
+             
+
+
+
+
                 if (date <= coupon.expirydate) {
                     if (coupon.Status == 1) {
                         let total = parseInt(data.Total)
@@ -1327,15 +1344,13 @@ console.log(buyproduct.PPrice,"yourprice");
                         obj.total = total - discountVal
                         obj.success = true
                         resolve(obj)
-
                         resolve(data)
-                        db.get().collection(collection.COUPON_OFFERS).updateOne({ coupon: data.CouponCode }, {
-                            $set: {
-                                status: 0
-                            }
-                        })
-
-
+                        // db.get().collection(collection.COUPON_OFFERS).updateOne({ coupon: data.CouponCode }, {
+                        //     $set: {
+                        //         Status: 0
+                        //     }
+                        // })
+                        // console.log("success");
 
                     } else {
                         obj.couponUsed = true
@@ -1347,10 +1362,12 @@ console.log(buyproduct.PPrice,"yourprice");
                     console.log("Expired");
                     resolve(obj)
                 }
-            } else {
+            }
+         } else {
                 obj.invalidCoupon = true
                 console.log("invalid");
                 resolve(obj)
+                console.log(obj,"mj");
             }
 
 

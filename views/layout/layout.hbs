@@ -95,9 +95,16 @@
 
   {{>user-header}}
   {{{body}}}
-  <style>
-    <style>
-  body {
+
+
+
+
+
+
+
+   <style>
+  
+body {
     font-family: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     background-color: #fff;
 
@@ -270,12 +277,12 @@
   }
 
   header .navbar .dropdown-menu .dropdown-item:hover {
-    background: #007bff;
+   
     color: #fff;
   }
 
   header .navbar .dropdown-menu .dropdown-item.active {
-    background: #007bff;
+    
     color: #fff;
   }
 
@@ -285,7 +292,7 @@
   }
 
   header .navbar .cta-btn a {
-    background: #007bff;
+  
     color: #fff !important;
     text-transform: uppercase;
     font-size: .8rem;
@@ -299,12 +306,19 @@
 
   header .navbar .cta-btn a:hover {
     background: #fff;
-    color: #007bff !important;
+  
     -webkit-box-shadow: 2px 0 30px -5px rgba(0, 0, 0, 0.2);
     box-shadow: 2px 0 30px -5px rgba(0, 0, 0, 0.2);
   }
 </style>
-  </style>
+ 
+
+
+
+
+
+
+
   {{/if}}
 
 
@@ -315,13 +329,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
     crossorigin="anonymous"></script>
-  {{!-- imgae zooming --}}
-  <script src="/js/Nzoom.min.js"></script>
 
 
-
-    
-  {{!-- /image zooming --}}
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
@@ -335,7 +345,26 @@
   <script src="/js/qty.js"></script>
   <script src="/js/custome.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js-copy/image-zoom.js"></script>
+<script src="/js-copy/image-zoom.min.js"></script>
+
+
+
   <script>
+
+$(function(){
+  $('.imageZoom').imageZoom();
+});
+$(function(){
+  $('.imageZoom2').imageZoom();
+});
+$(function(){
+  $('.imageZoom3').imageZoom();
+});
+$(function(){
+  $('.imageZoom4').imageZoom();
+});
 
   </script>
 
@@ -562,6 +591,47 @@
         }
       })
     }
+
+
+
+
+      
+        
+        
+    function deleteBrand(event) {
+      event.preventDefault();
+      var link = event.currentTarget.href;
+      var name = event.currentTarget.name;
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to delete " + name,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Deleted!',
+            'category has been deleted.',
+            'success'
+
+          )
+          window.location = link;
+        }
+        else {
+          return false;
+
+        }
+      })
+    }
+
+     
+
+
+  
+
 
 
 

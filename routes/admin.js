@@ -379,14 +379,7 @@ router.get('/add-banner',(req,res)=>{
 router.post('/add-banner',(req,res)=>{
   adminHelper.addbanner(req.body).then((id)=>{
     console.log(req.files);
-    // let image1=req.files.image8
-    // let image2=req.files.image9
-    // let image3=req.files.image10
- 
-    // image1.mv('public/banner-images/'+ id + '.a.jpg'),
-    // image2.mv('public/banner-images/'+ id + '.b.jpg'),
-    // image3.mv('public/banner-images/'+ id + '.c.jpg'),
- 
+
 
     if (req.files.image8) {
       let image1 = req.files.image8
@@ -401,12 +394,16 @@ router.post('/add-banner',(req,res)=>{
   
       image3.mv('public/banner-images/' + id + '.c.jpg')
     }
+    res.redirect('/admin/banner-management')  , 
+
      (err, done) => {
       if (!err) {
+        console.log("NNNNNNnnn");
         res.redirect('/admin/banner-management')
       }
       else {
      
+        console.log("BBBBBBBbbbb");
         res.redirect('/admin/banner-management')
       }
      }

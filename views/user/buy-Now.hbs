@@ -121,16 +121,14 @@
 
 						</div>
 					</div>
-					<hr class="mb-4">
+			
 
 
 
 
 
 
-					<hr class="mb-4">
-					<button id="submit" class="btn btn-primary btn-lg btn-block" type="submit">Continue to
-						checkout</button>
+				
 
 				</div>
 
@@ -189,30 +187,41 @@
 
 
 				{{!-- Coupon starting --}}
-				<div class="your-order-bottom">
+
+
+					<div class="your-order-bottom">
 					<div class="discount-code">
 						<p>Enter your coupon code if you have one.</p>
-						<input type="text" class="form-control" name="Coupon" id="couponInput" />
+						<input type="text" class="form-control" name="CouponCode" id="couponInput" />
 						<input type="text" id="couponTotal" name="Total" value="{{total}}" hidden>
 						<a id="couponBtn" onclick="couponApply()" class="btn bg-success text-white text-center  mt-2"
-							style="width: 100%;text-decoration: none;">Apply Coupon</a>
+							style="width: 100%;text-decoration: none;">Apply
+							Coupon</a>
+						{{!-- Error handling --}}
 						<div class="mt-2">
-							<div class="alert alert-danger" style="display: none;" id="couponUsed" role="alert">
-								This Coupon was redeemed
+							<div class="alert alert-danger" style="display: none; " id="couponUsed" role="alert">
+								This Coupon has
+								been Used
 							</div>
+
 							<div class="alert alert-danger" style="display: none;" id="couponInvalid" role="alert">
 								This Coupon is
 								invalid
 							</div>
+
 							<div class="alert alert-success" style="display: none;" id="couponSuccess" role="alert">
 								Coupon Applied
 								Successfully
 							</div>
+
 							<div class="alert alert-warning" style="display: none;" id="couponExpired" role="alert">
 								Sorry!!! Your
 								Coupon has been Expired
 							</div>
 						</div>
+
+
+				
 					</div>
 				</div>
 				<div class="your-order-total">
@@ -237,6 +246,11 @@
 				</div>
 				{{!-- Coupon ending --}}
 
+
+
+
+	<button id="submit" class="btn btn-primary btn-lg btn-block" type="submit">Continue to
+						checkout</button>
 			</div>
 	</form>
 
@@ -404,62 +418,7 @@
 </script>
 
 <script>
-	function couponApply() {
-		let couponCode = document.getElementById('couponInput').value
-		let couponTotal = document.getElementById('couponTotal').value
-		$.ajax({
-			url: '/couponApply',
-			data: {
-				Coupon: couponCode,
-				Total: couponTotal
 
-			},
-			method: 'post',
-			success: (response) => {
-				console.log(response)
-				if (response.couponSuccess) {
-					let oldTotal = parseInt(document.getElementById('totalOriginal').innerHTML)
-					let discount = oldTotal - parseInt(response.total)
-					document.getElementById('couponInput').readOnly = true
-					document.getElementById('discount').innerHTML = discount
-					$('#discount').show()
-					$('#discountLabel').show()
-					document.getElementById('totalOriginal').innerHTML = response.total
-					$('#couponSuccess').show()
-					$('#couponUsed').hide()
-					$('#couponInvalid').hide()
-					$('#couponExpired').hide()
-				}
-
-				if (response.couponUsed) {
-					$('#couponUsed').show()
-					$('#couponSuccess').hide()
-					$('#couponInvalid').hide()
-					$('#couponExpired').hide()
-					$('#discount').hide()
-					$('#discountLabel').hide()
-				}
-				if (response.invalidCoupon) {
-					$('#couponInvalid').show()
-					$('#couponSuccess').hide()
-					$('#couponUsed').hide()
-					$('#couponExpired').hide()
-					$('#discount').hide()
-					$('#discountLabel').hide()
-				}
-				if (response.couponExpired) {
-					$('#couponExpired').show()
-					$('#couponSuccess').hide()
-					$('#couponInvalid').hide()
-					$('#couponUsed').hide()
-					$('#discount').hide()
-					$('#discountLabel').hide()
-
-				}
-			}
-
-		})
-	}
 </script>
 
 </html>

@@ -8,9 +8,9 @@
   <table class="table" id="admintable">
     <thead class="thead-dark">
       <tr>
-        {{!-- <th>No</th> --}}
+ 
         <th>Brand Name</th>
-        {{!-- <th>Logo</th> --}}
+      
            <th>Description</th>
               <th>Logo</th>
             <th>Options</th>
@@ -19,7 +19,7 @@
     <tbody>
       {{#each brand}}
       <tr>
-        {{!-- <td>1</td> --}}
+ 
         <td>{{this.brand}}</td>
           <td>{{this.description}}</td>
         <td>
@@ -28,9 +28,9 @@
       
         <td>
            <a href="/admin/brand-edit/{{this._id}}">  <button type="submit" class="btn btn-primary"> Edit</button></a>
-            {{!-- <a href="/admin/brand-delete/{{this._id}}"><button type="submit" class="btn btn-danger" onclick="deleteBrand(event)"> Delete</button></a>  --}}
+          
                <a class="btn btn-danger" href="/admin/brand-delete/{{this._id}}" name="{{this.brand}}"
-                        onclick="deleteCategory(event)"><i class="fas fa-trash-alt"></i></a>
+                        onclick="deleteBrand(event)"><i class="fas fa-trash-alt"></i></a>
 
   
         </td>

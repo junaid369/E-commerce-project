@@ -47,10 +47,10 @@
 		<div class="col-sm-6 mb-3">
 			<div class="card">
 				<div class="card-body">
-					<h5 class="card-title">{{this.firstName}} {{this.lastName}}</h5>
-					<p class="card-text">{{this.House}},{{this.Town}} -
+					<h5 class="card-title" style="font-weight: 700;">{{this.firstName}} {{this.lastName}}</h5>
+					<p class="card-text" style="font-weight: 700;">{{this.House}},{{this.Town}} -
 						{{this.PIN}},',{{this.House}},{{this.Street}},{{this.Town}}<br></p>
-					<button class="btn btn-success"
+					<button class="btn btn-success" style="font-weight: 700;"
 						onclick="autoFill('{{this.FirstName}}','{{this.LastName}}','{{this.House}}','{{this.Street}}','{{this.Town}}','{{this.PIN}}')">Auto
 						Fill</button>
 				</div>
@@ -66,7 +66,7 @@
 			</div>
 		</div>
 	</div>
-<form id="checkout-form" method="post">
+	<form id="checkout-form" method="post">
 		<div class="row ">
 			<div class="col-md-9">
 
@@ -81,54 +81,65 @@
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="firstName">First name</label>
-							<input type="text" class="form-control" id="firstName" name="FirstName" placeholder=""
-								value="">
-							<div class="invalid-feedback">
-								Valid first name is required.
-							</div>
+							<input type="text" class="form" style="width: 100%;" id="firstName" style="font-weight: 700;" name="FirstName" placeholder="" value=""
+								required>
+
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="lastName">Last name</label>
-							<input type="text" class="form-control" id="LastName" name="LastName" placeholder=""
-								value="">
-							<div class="invalid-feedback">
-								Valid last name is required.
-							</div>
+							<input type="text" class="form" id="LastName" style="width: 100%;" style="font-weight: 700;" name="LastName" placeholder="" value=""
+								required>
+
 						</div>
 					</div>
 
 					<div class="mb-3">
-						<label for="House">House Name</label>
+						<label for="House"  style="font-weight: 7000;">House Name</label>
 						<div class="input-group">
 
-							<input type="text" class="form-control" id="House" name="House" placeholder="Username">
-							
+							<input type="text" class="form" id="House" style="width: 100%;" name="House"
+								placeholder="Username">
+
 						</div>
 					</div>
 
 					<div class="mb-3">
-						<label for="email">Street <span class="text-muted">(Optional)</span></label>
-						<input type="text" class="form-control" id="Street" name="Street" placeholder="">
-					
+						<label for="email" style="font-weight: 7000;">Street <span class="text-muted">(Optional)</span></label>
+						<div>
+							<input type="text" class="form" id="Street" name="Street" placeholder=""
+								style="width: 100%;">
+						</div>
+
+
 					</div>
 
 					<div class="mb-3">
-						<label for="address">Town</label>
-						<input type="text" class="form-control" id="Town" name="Town" placeholder="1234 Main St">
-					
+						<label for="address" style="font-weight: 7000;">Town</label>
+						<div>
+							<input type="text" class="form" id="Town" name="Town" placeholder="1234 Main St"
+								style="width: 100%;">
+						</div>
+
+
 					</div>
 
 
 					<div class="row">
 						<div class="col-md-6 mb-3">
-							<label for="Mobile">Mobile</label>
-							<input type="number" class="form-control" id="Mobile" name="Mobile" placeholder="">
-				
+							<label for="Mobile" style="font-weight: 7000;">Mobile</label>
+							<div>
+								<input type="text"  oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');"   class="form-" id="Mobile" name="Mobile" style="width: 100%;" placeholder="" required>
+							</div>
+
+
 						</div>
 						<div class="col-md-6 mb-3">
-							<label for="zip">PIN</label>
-							<input type="number" class="form-control" id="PIN" name="PIN" placeholder="">
-			
+							<label for="zip" style="font-weight: 7000;">PIN</label>
+							<div>
+								<input type="text"  oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');"   class="form" id="PIN" name="PIN" placeholder="" style="width: 100%;" required>
+							</div>
+
+
 						</div>
 						<div class="d-block my-3">
 							<div class="custom-control custom-radio">
@@ -148,8 +159,7 @@
 
 
 					<hr class="mb-4">
-					<button id="submit" class="btn btn-primary btn-lg btn-block" type="submit">Continue to
-						checkout</button>
+				>
 
 				</div>
 
@@ -161,42 +171,42 @@
 
 
 				<div class="custom-control custom-radio ml-3 mt-3">
-					<input type="radio" class="custom-control-input" value="COD" id="defaultGroupExample1"
+					<input type="radio" class="custom-control-input" value="COD"  id="defaultGroupExample1"
 						name="payment">
-					<label class="custom-control-label pl-4" for="defaultGroupExample1">Cash on Delivery</label>
+					<label class="custom-control-label pl-4"  style="font-weight: 700; " for="defaultGroupExample1">Cash on Delivery</label>
 				</div>
 
 				<!-- Group of default radios - option 2 -->
 				<div class="custom-control custom-radio mt-4 ml-3">
 					<input type="radio" class="custom-control-input" value="Razorpay" id="defaultGroupExample2"
 						name="payment" checked>
-					<label class="custom-control-label  pl-4" for="defaultGroupExample2">Razor Pay</label>
+					<label class="custom-control-label  pl-4"  style="font-weight: 700;" for="defaultGroupExample2">Razor Pay</label>
 				</div>
 
 				<!-- Group of default radios - option 3 -->
 				<div class="custom-control custom-radio mt-4 ml-3">
 					<input type="radio" class="custom-control-input" value="paypal" id="defaultGroupExample3"
 						name="payment">
-					<label class="custom-control-label  pl-4" for="defaultGroupExample3">PayPal</label>
+					<label class="custom-control-label  pl-4" style="font-weight: 700;" for="defaultGroupExample3">PayPal</label>
 				</div>
 
-			
 
-			<h4 class="d-flex justify-content-between align-items-center mb-3">
-				<span class="text-muted mt-3">Your cart</span>
-			
-			</h4>
-			<ul class="list-group mb-3">
+
+				<h4 class="d-flex justify-content-between align-items-center mb-3">
+					<span class="text-muted mt-3" style="font-weight: 700;">Your cart</span>
+
+				</h4>
+				<ul class="list-group mb-3">
 					<li class="list-group-item d-flex justify-content-between lh-condensed">
 						<div>
 							<h6 class="my-0">{{product.Name}}</h6>
-							<small class="text-muted">Brief description</small>
+							<small class="text-muted" v>Brief description</small>
 						</div>
 						<span class="text-muted">Rs:{{product.Price}}</span>
 					</li>
 
 					<li class="list-group-item d-flex justify-content-between">
-						<span>Total (INR)</span>
+						<span style="font-weight: 700;">Total (INR)</span>
 
 						<strong>Rs:{{total}}</strong>
 					</li>
@@ -205,17 +215,17 @@
 
 
 
-			
+
 
 
 				{{!-- COUPON --}}
 				<div class="your-order-bottom">
 					<div class="discount-code">
-						<p>Enter your coupon code if you have one.</p>
-						<input type="text" class="form-control" name="Coupon" id="couponInput" />
+						<p style="font-weight: 700;"> Enter your coupon code if you have one.</p>
+						<input type="text" class="form-control" name="CouponCode" id="couponInput" />
 						<input type="text" id="couponTotal" name="Total" value="{{total}}" hidden>
 						<a id="couponBtn" onclick="couponApply()" class="btn bg-success text-white text-center  mt-2"
-							style="width: 100%;text-decoration: none;">Apply
+							style="width: 100%;text-decoration: none:font-weight: 700;">Apply
 							Coupon</a>
 						{{!-- Error handling --}}
 						<div class="mt-2">
@@ -224,7 +234,7 @@
 								been Used
 							</div>
 
-							<div class="alert alert-danger" style="display: none;" id="couponUsed" role="alert">
+							<div class="alert alert-danger" style="display: none;" id="couponInvalid" role="alert">
 								This Coupon is
 								invalid
 							</div>
@@ -260,13 +270,15 @@
 					</table>
 
 				</div>
+				
 				{{!-- /END COUPON --}}
 
 
 
 
-
-		</div>
+	<button id="submit" class="btn btn-info" style="width: 100%;" type="submit">Continue tocheckout</button
+						
+			</div>
 	</form>
 
 
@@ -355,6 +367,20 @@
 	crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+
+
+{{!-- 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script> --}}
+<script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+	crossorigin="anonymous"></script>
+<script src="https://getbootstrap.com/docs/4.3/examples/checkout/form-validation.js"></script>
+
 
 <script>
 	$('#checkout-form').submit((e) => {
@@ -445,6 +471,10 @@
 		})
 	}
 </script>
+
+
+
+{{!-- 
 <script>
 	function couponApply() {
 		let couponCode = document.getElementById('couponInput').value
@@ -482,6 +512,7 @@
 					$('#discountLabel').hide()
 				}
 				if (response.invalidCoupon) {
+					console.log("invalid")
 					$('#couponInvalid').show()
 					$('#couponSuccess').hide()
 					$('#couponUsed').hide()
@@ -502,17 +533,14 @@
 
 		})
 	}
-</script>
+</script> --}}
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-<script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
-	crossorigin="anonymous"></script>
-<script src="https://getbootstrap.com/docs/4.3/examples/checkout/form-validation.js"></script>
+
+
+
+
+
 </body>
 
 </html>

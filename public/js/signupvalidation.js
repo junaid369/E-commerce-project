@@ -1,3 +1,48 @@
+
+
+
+
+
+
+    
+$(document).ready(function(){
+    $("#buyaddress").validate({
+    rules:{
+        FirstName:{
+           
+            required:true
+            
+        },
+        LastName:{
+            required:true
+          
+        },
+        House:{
+            required:true
+
+        },
+        Street:{
+            required:true
+
+        },
+        Town:{
+            required:true
+
+        },
+        PIN:{
+            required:true
+
+        },
+    },
+})
+})
+
+   
+
+
+
+
+
 $(document).ready(function(){
     $("#submitForm").validate({
     rules:{
@@ -81,6 +126,8 @@ $(document).ready(function(){
 })
 
 })
+
+
 // $(document).ready(function(){
 //     $("#loginotp").validate({
 //     rules:{

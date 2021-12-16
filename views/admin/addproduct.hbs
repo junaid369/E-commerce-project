@@ -90,7 +90,7 @@
   <div class="mt-5">
     <label for="">IMAGE 1</label>
     <img src="" alt="" style="width: 100px; height:auto" id="imgview2">
-    {{!-- <div id="preview1"></div> --}}
+  
     <input type="file" name="image" id="file2" class="form-control" onchange="return fileValidation2()">
   </div>
    <div class="col-12">
@@ -108,7 +108,7 @@
   <div class="mt-5">
     <label for="">IMAGE 2</label>
     <img src="" alt="" style="width: 100px; height:auto" id="imgview3">
-    {{!-- <div id="preview1"></div> --}}
+ 
     <input type="file" name="image2" id="file3" class="form-control" onchange="return fileValidation3()">
   </div>
   <div class="col-12">
@@ -120,10 +120,12 @@
 
 
 
-  <div class="mt-5">
-    <label for="">IMAGE 3</label>
+
+
+<div class="mt-5">
+    <label for="">IMAGE 2</label>
     <img src="" alt="" style="width: 100px; height:auto" id="imgview4">
-    {{!-- <div id="preview1"></div> --}}
+ 
     <input type="file" name="image3" id="file4" class="form-control" onchange="return fileValidation4()">
   </div>
   <div class="col-12">
@@ -131,8 +133,6 @@
     <button class="btn btn-primary mt-3" type="button" style="display: none;" id="crop-btn4">Crop</button>
   </div>
   
-
-
 
 
 
@@ -152,12 +152,6 @@
 </body>
 
 
-
- {{!-- <script type="text/javascript" charset="utf8"
-    src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script> --}}
-  
-  {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script> --}}
-   {{!-- <script src="/js/signupvalidation.js"></script> --}}
 
 
 
@@ -274,7 +268,6 @@ function fileValidation3() {
 <script>
 
 
-
 function fileValidation4() {
     const imagebox = document.getElementById('image-box4')
     const crop_btn = document.getElementById('crop-btn4')
@@ -303,7 +296,7 @@ function fileValidation4() {
             zoomable: false,
             movable: false,
             aspectRatio: 16 / 19,
-            //  preview: '.preview',
+           
             minCropBoxWidth: 180,
             minCropBoxHeight: 240,
         })
@@ -326,14 +319,4 @@ function fileValidation4() {
     }
 }
 
-
-
-
-
-})
 </script>
-
-
-
-
-

@@ -55,142 +55,6 @@
     }
   }
 </style>
-
-<head>
-
-
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
-<div class="container">
-
-  <div class="col-lg-8 border p-3 main-section bg-white">
-
-    <div class="row m-0">
-      <div class="col-lg-4 left-side-product-box pb-3">
-
-   
-        
-        <div class="preview-pic tab-content">
-
-
-          <div class="tab-pane active" id="pic-1"><img src="/product-images/{{single._id}}.a.jpg" id="NZoomImg"
-              data-NZoomscale="2" class="border p-2" style="max-width: 100%;" /></div>
-          <div class="tab-pane img-fluid" id="pic-2"><img src="/product-images/{{single._id}}.b.jpg" 
-              /></div>
-          <div class="tab-pane img-fluid" id="pic-3"><img src="/product-images/{{single._id}}.c.jpg" /></div>
-
-        </div>
-        <ul class="preview-thumbnail nav nav-tabs">
-          <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="/product-images/{{single._id}}.a.jpg" /
-                style=""></a></li>
-          <li><a data-target="#pic-2" data-toggle="tab"><img src="/product-images/{{single._id}}.b.jpg" / style=""
-                ;></a></li>
-          <li><a data-target="#pic-3" data-toggle="tab"><img src="/product-images/{{single._id}}.c.jpg" /style=""></a>
-          </li>
-          {{!-- <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-          <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li> --}}
-        </ul>
-      </div>
-      <div class="col-lg-8">
-        <div class="right-side-pro-detail border p-3 m-0">
-          <div class="row">
-            <div class="col-lg-12">
-              {{!-- <span>Who What Wear</span> --}}
-              <p class="m-0 p-0">{{single.name}}</p>
-            </div>
-            <div class="col-lg-12">
-              <p class="m-0 p-0 price-pro">RS:{{single.PPrice}}</p>
-              <hr class="p-0 m-0">
-            </div>
-            <div class="col-lg-12 pt-2">
-              <h5>Product Detail</h5>
-              <span>This versatile polka print shirt dress is detailed with contrast pocket patch. It has double
-                placket, with buttons given on the under placket so it doesn't show on top.
-                It also has quirky sleeve details with contrast fabric hand-stitched on it
-            </span>
-              <hr class="m-0 pt-2 mt-2">
-            </div>
-            <div class="col-lg-12">
-              <p class="tag-section"><strong>Tag : </strong><a href="/women">Woman</a>
-            </div>
-            {{!-- <div class="col-lg-12">
-              <h6>Quantity :</h6>
-              <input type="number" class="form-control text-center w-100" value="1">
-            </div> --}}
-            <div class="col-lg-12 mt-3">
-              <div class="row">
-                <div class="col-lg-6 pb-2">
-                  <button href="" class="btn btn-success  w-100" type="submit" onclick="addtocart('{{this._id}}')">Add
-                    To Cart</button>
-          
-                </div>
-
-   <div class="col-lg-6 pb-2">
-                  <a href="/buyNow/{{this._id}}" class="btn btn-danger  w-100" type="submit" onclick="addtocart('{{this._id}}')">Buy
-                    Now</a>
-   </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12 text-center pt-3">
-        <h4>More Product</h4>
-      </div>
-    </div>
-    <div class="row mt-3 p-0 text-center pro-box-section">
-      <div class="col-lg-3 pb-2">
-        <div class="pro-box border p-0 m-0">
-          <img src="http://nicesnippets.com/demo/pd-b-image1.jpg">
-        </div>
-      </div>
-      <div class="col-lg-3 pb-2">
-        <div class="pro-box border p-0 m-0">
-          <img src="http://nicesnippets.com/demo/pd-b-images2.jpg">
-        </div>
-      </div>
-      <div class="col-lg-3 pb-2">
-        <div class="pro-box border p-0 m-0">
-          <img src="http://nicesnippets.com/demo/pd-b-images3.jpg">
-        </div>
-      </div>
-      <div class="col-lg-3 pb-2">
-        <div class="pro-box border p-0 m-0">
-          <img src="http://nicesnippets.com/demo/pd-b-images4.jpg">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-{{!-- <script>
-  $(function () {
-    $('#imageZoom').imageZoom();
-  });
-</script>
-
-<script>
-  $(function () {
-    $('.my-gallery').imageZoom({
-      $(this).imageZoom();
-    });
-  });
-</script>
-<script>
-
-
-</script> --}}
-{{!-- </script> --}}
-
-
-
 <style>
   body {
     font-family: 'open sans';
@@ -382,7 +246,7 @@
   }
 
   .blue {
-    background: #0076ad;
+
   }
 
   .tooltip-inner {
@@ -416,14 +280,7 @@
       transform: scale(1);
     }
   }
-</style>
 
-
-
-
-
-
-<style>
   .zoomArea {
     width: 600px;
     height: 450px;
@@ -436,3 +293,122 @@
     height: 100%;
   }
 </style>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="/css-copy/image-zoom.css" />
+<div class="container">
+
+  <div class="col-lg-12 border p-3 main-section bg-white">
+
+    <div class="row m-0">
+      <div class="col-lg-4 left-side-product-box pb-3">
+
+
+
+        <div class="  my-gallery preview-pic tab-content">
+
+
+          <div class="tab-pane active" id="pic-1"><img src="/product-images/{{single._id}}.a.jpg" id=""
+              class="imageZoom" style="max-width: 100%;" /></div>
+          <div class="tab-pane img-fluid" id="pic-2"><img src="/product-images/{{single._id}}.b.jpg"
+              class="imageZoom2" /></div>
+          <div class="tab-pane img-fluid" id="pic-3"><img src="/product-images/{{single._id}}.c.jpg"
+              class="imageZoom3" /></div>
+                <div class="tab-pane img-fluid" id="pic-2"><img src="/product-images/{{single._id}}.b.jpg"
+              class="imageZoom4" /></div>
+
+        </div>
+        <ul class="preview-thumbnail nav nav-tabs" style="">
+          <li class="active"><a data-target="#pic-1" style="" data-toggle="tab"><img src="/product-images/{{single._id}}.a.jpg" /
+                style="height: 80px;"></a></li>
+          <li><a data-target="#pic-2" data-toggle="tab"><img src="/product-images/{{single._id}}.b.jpg" / style="height: 80px;"
+                ;></a></li>
+          <li><a data-target="#pic-3" data-toggle="tab"><img src="/product-images/{{single._id}}.c.jpg" /style="height: 80px;"></a>
+
+          </li>
+             <li><a data-target="#pic-2" data-toggle="tab"><img src="/product-images/{{single._id}}.b.jpg" / style="height: 80px;"
+                ;></a></li>
+
+        </ul>
+      </div>
+      <div class="col-lg-8">
+        <div class="right-side-pro-detail border p-3 m-0">
+          <div class="row">
+            <div class="col-lg-12">
+
+              <p class="m-0 p-0">{{single.name}}</p>
+            </div>
+            <div class="col-lg-12">
+              <p class="m-0 p-0 price-pro">RS:{{single.PPrice}}</p>
+              <hr class="p-0 m-0">
+            </div>
+            <div class="col-lg-12 pt-2">
+              <h5>Product Detail</h5>
+              <span>This versatile polka print shirt dress is detailed with contrast pocket patch. It has double
+                placket, with buttons given on the under placket so it doesn't show on top.
+                It also has quirky sleeve details with contrast fabric hand-stitched on it
+              </span>
+              <hr class="m-0 pt-2 mt-2">
+            </div>
+            <div class="col-lg-12">
+              <p class="tag-section"><strong>Tag : </strong><a href="/women">Woman</a>
+                <p class="tag-section"><strong>Brand: </strong><a>{{single.brand}}</a>
+            </div>
+
+            <div class="col-lg-12 mt-3">
+              <div class="row">
+                <div class="col-lg-6 pb-2">
+                  <button href="" class="btn btn-success  w-100" type="submit" onclick="addtocart('{{single._id}}')">Add
+                    To Cart</button>
+
+                </div>
+
+                <div class="col-lg-6 pb-2">
+                  <a href="/buyNow/{{single._id}}" class="btn btn-danger  w-100" type="submit">Buy
+                    Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{!-- <div class="row">
+      <div class="col-lg-12 text-center pt-3">
+        <h4>More Product</h4>
+      </div>
+    </div>
+    <div class="row mt-3 p-0 text-center pro-box-section">
+      <div class="col-lg-3 pb-2">
+        <div class="pro-box border p-0 m-0">
+          <img src="http://nicesnippets.com/demo/pd-b-image1.jpg">
+        </div>
+      </div>
+      <div class="col-lg-3 pb-2">
+        <div class="pro-box border p-0 m-0">
+          <img src="http://nicesnippets.com/demo/pd-b-images2.jpg">
+        </div>
+      </div>
+      <div class="col-lg-3 pb-2">
+        <div class="pro-box border p-0 m-0">
+          <img src="http://nicesnippets.com/demo/pd-b-images3.jpg">
+        </div>
+      </div>
+      <div class="col-lg-3 pb-2">
+        <div class="pro-box border p-0 m-0">
+          <img src="http://nicesnippets.com/demo/pd-b-images4.jpg">
+        </div>
+      </div>
+    </div> --}}
+  </div>
+</div>
+
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

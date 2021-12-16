@@ -729,7 +729,8 @@ module.exports = {
                 discount:parseInt(data.discount),
                 Status:1,
                 StartDate:StartDate,
-                expirydate:expirydate
+                expirydate:expirydate,
+                Users: []
 
             }
             db.get().collection(collection.COUPON_OFFERS).insertOne(dataobj).then(() => {

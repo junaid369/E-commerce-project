@@ -21,7 +21,7 @@ const client = require('twilio')(accountSID, authTOCKEN)
 const paypal = require('paypal-rest-sdk');
 paypal.configure({
   'mode': 'sandbox', //sandbox or live
-  'client_id':process.env.client_id,
+  'client_id': process.env.client_id,
   'client_secret': process.env.client_secret
 });
 
@@ -80,12 +80,12 @@ router.get('/', async function (req, res, next) {
 
 router.get('/women', async (req, res) => {
   let products = await adminHelper.getAllproducts()
-   userHelper.getcartcount(req.session.user._id).then((cartcount)=>{
-    res.render('user/women', { "user": req.session.user, userss: true, products,cartcount })
+  userHelper.getcartcount(req.session.user._id).then((cartcount) => {
+    res.render('user/women', { "user": req.session.user, userss: true, products, cartcount })
   })
-  
 
-   })
+
+})
 
 
 
@@ -112,7 +112,7 @@ router.get('/add-to-cart/:id', async (req, res) => {
   await userHelper.addTocart(req.params.id, req.session.user._id).then(() => {
     userHelper.getcartcount(req.session.user._id).then((cartcount) => {
       console.log(cartcount);
-      console.log(response,"<<<");
+      console.log(response, "<<<");
       res.json({ status: true, cartcount })
     })
   })
@@ -206,10 +206,10 @@ router.get('/place-order', verifyUserLogin, async (req, res) => {
     let len = addr.length
     address = addr.slice(len - 2, len)
   }
-  
+
 
   if (cartCount > 0) {
-    res.render('user/place-order', { total, userss: true, cartCount, products, address, user })
+    res.render('user/place-order', { total, userss: true, cartCount, products, address, user, sample: true })
   } else {
     req.session.noCartPro = true
     res.redirect('/cart')
@@ -236,7 +236,7 @@ router.post('/place-order', async (req, res) => {
 
   console.log(req.session.total, 'session');
   userHelper.placeOrder(req.body, products, total).then((orderId) => {
-    req.session.orderId=orderId
+    req.session.orderId = orderId
     if (req.body['payment'] == 'COD') {
       res.json({ codSuccess: true })
 
@@ -301,8 +301,12 @@ router.post('/place-order', async (req, res) => {
 
 
 router.get('/cancelled', (req, res) => {
-  res.render('user/payment-failed', { userss: true, user: req.session.user })
+  res.render('user/user-ordercanceld',{userss:true,user:req.session.user})
 })
+
+
+
+
 
 router.get('/success', (req, res) => {
   console.log("akkusuttuuuu");
@@ -325,7 +329,7 @@ router.get('/success', (req, res) => {
       throw error;
     } else {
       let id = req.session.user
-      console.log(id,"ypur paypal id");
+      console.log(id, "ypur paypal id");
       userHelper.changePaymentStatus(req.session.orderId).then(() => {
         userHelper.clearCart(id).then(() => {
           console.log("cart cleared");
@@ -345,16 +349,18 @@ router.get('/success', (req, res) => {
 
 
 router.get('/buyNow/:id', verifyUserLogin, async (req, res) => {
-  
+
+
+
   let pId = req.params.id
-  console.log(pId,"buy id");
+  console.log(pId, "buy id");
   req.session.proId = pId
   let userId = req.session.user._id
   let user = req.session.user
   let productDetails = await userHelper.buyproductdetails(pId)
-  console.log(productDetails,"OOOOOO");
+  console.log(productDetails, "OOOOOO");
   let total = await userHelper.getBuyNowTotal(pId)
-  
+
   req.session.pId = pId
 
   let cartCount = null
@@ -370,8 +376,9 @@ router.get('/buyNow/:id', verifyUserLogin, async (req, res) => {
     let len = addr.length
     address = addr.slice(len - 2, len)
   }
-  res.render('user/buy-now', {  total, cart: true, pId,   cartCount, productDetails, address, user,userss:true })
+  res.render('user/buy-now', { total, cart: true, pId, cartCount, productDetails, address, user, userss: true })
 })
+
 
 
 
@@ -393,14 +400,14 @@ router.post('/buy-Now', async (req, res) => {
     req.session.total = req.session.couponTotal
     total = req.session.total
   } else {
-    total =  await userHelper.getBuyNowTotal(req.session.proId)
+    total = await userHelper.getBuyNowTotal(req.session.proId)
     req.session.total = total
   }
 
 
- 
+
   userHelper.SingleOrderPlace(req.body, products, total).then((orderId) => {
-    req.session.orderId=orderId
+    req.session.orderId = orderId
     if (req.body['payment'] == 'COD') {
       res.json({ codSuccess: true })
 
@@ -501,20 +508,32 @@ router.get('/success', (req, res) => {
 
 
 
+
+
+
+
+
 router.get('/orderpay-success', (req, res) => {
   userHelper.clearCart(id).then(() => {
     console.log("cart cleared");
 
-  res.render('users/orderpay-success', { userss: true, user: req.session.user })
+    res.render('user/orderpay-success', { userss: true, user: req.session.user })
+  })
 })
-})
+
+
+
+
+
+
+
 router.get('/order-success', verifyUserLogin, (req, res) => {
   let user = req.session.user
   let userId = req.session.user._id
-    res.render('user/order-success', { userss: true, user })
-    userHelper.clearCart(userId)
-      console.log("cart cleared");
-  
+  res.render('user/order-success', { userss: true, user })
+  userHelper.clearCart(userId)
+  console.log("cart cleared");
+
 })
 router.get('/payment-canceld', verifyUserLogin, (req, res) => {
   res.render('user/payment-failed', { userss: true, user: req.session.user })
@@ -692,14 +711,14 @@ router.post('/delete-wish-item', (req, res) => {
 
 router.get('/singleproduct/:id', verifyUserLogin, async (req, res) => {
   id = req.params.id
-  
+
   console.log("123345677");
   single = await userHelper.singleproduct(id)
   console.log("are you in product view");
   console.log(single, "66666666");
- 
+
   adminHelper.getAllproducts().then((products) => {
-  
+
     res.render('user/singleproduct', { userss: true, single, products, user: req.session.user, })
 
   })
@@ -730,15 +749,18 @@ router.post('/addNewAddress', (req, res) => {
 router.get('/buyaddaddress', (req, res) => {
 
   let user = req.session.user
-  res.render('user/buyaddNewaddress', { userss: true, user })
+
+  res.render('user/buyaddNewaddress', { userss: true, user, sample: true })
 })
 
 router.post('/addNewBuyAddress', (req, res) => {
 
+  let proId = req.session.proId
 
   userHelper.addNewBuyAddress(req.body).then((response) => {
+    let url = `buyNow/${proId}`
 
-    res.redirect('/buyNow')
+    res.redirect(url)
   })
 
 })
@@ -853,8 +875,8 @@ router.get('/loginotp', (req, res) => {
     res.redirect('/')
   } else {
 
-    res.render('user/loginotp', { login: true, otp: true ,"invalid":req.session.invalidOtp })
-    req.session.invalidOtp=false;
+    res.render('user/loginotp', { login: true, otp: true, "invalid": req.session.invalidOtp })
+    req.session.invalidOtp = false;
   }
 })
 
@@ -1231,7 +1253,7 @@ router.get('/forget-passwordmo', (req, res) => {
   console.log("hy its over");
 })
 router.get('/forgetotp', (req, res) => {
-  res.render('user/forget-otp', { login: true, sample: true, "invalid": req.session.invalidotp  })
+  res.render('user/forget-otp', { login: true, sample: true, "invalid": req.session.invalidotp })
   req.session.invalidotp = false
   console.log("hy in  y o  ur forget otp");
 
@@ -1277,8 +1299,8 @@ router.post('/forgetotp', (req, res) => {
 router.get('/recoverpassword', (req, res) => {
   console.log("are you come in m recovr message");
 
-  res.render('user/passwordrecover', { login: true, sample: true, "passwordnotsame": req.session.pswdNotSame  })
-  req.session.pswdNotSame=false
+  res.render('user/passwordrecover', { login: true, sample: true, "passwordnotsame": req.session.pswdNotSame })
+  req.session.pswdNotSame = false
 })
 
 router.post('/recoverpassword', (req, res) => {
@@ -1309,7 +1331,7 @@ router.post('/recoverpassword', (req, res) => {
       } else {
         console.log("error");
         req.session.invalidotp = true
-   
+
         res.redirect('/forgetotp')
       }
 
@@ -1341,11 +1363,11 @@ router.post('/change-password', verifyUserLogin, (req, res) => {
   console.log(pass1, " ", pass2);
   if (pass1 == pass2) {
     userHelper.changePassword(id, req.body).then((response) => {
-        console.log(response);
-        req.session.userloggedIn = false
-        req.session.user = null
-        res.redirect('/login')
- 
+      console.log(response);
+      req.session.userloggedIn = false
+      req.session.user = null
+      res.redirect('/login')
+
 
 
     })
@@ -1425,8 +1447,9 @@ router.post('/editprofile-address/:id', (req, res) => {
 // COUPON
 
 router.post('/couponApply', (req, res) => {
+  id=req.session.user._id
   console.log(req.body);
-  userHelper.couponValidate(req.body).then((response) => {
+  userHelper.couponValidate(req.body,id).then((response) => {
     req.session.couponTotal = response.total
     if (response.success) {
       res.json({ couponSuccess: true, total: response.total })
@@ -1436,7 +1459,7 @@ router.post('/couponApply', (req, res) => {
     else if (response.couponExpired) {
       res.json({ couponExpired: true })
     }
-    else {
+    else if(response.invalidCoupon){
       res.json({ invalidCoupon: true })
     }
     console.log(response);
