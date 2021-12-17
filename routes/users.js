@@ -41,6 +41,7 @@ const verifyUserLogin = (req, res, next) => {
 //HOME
 
 router.get('/', async function (req, res, next) {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   let user = req.session.user
   console.log("hy i am in home");
 
@@ -77,6 +78,7 @@ router.get('/', async function (req, res, next) {
 //STORE
 
 router.get('/women', async (req, res) => {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   let products = await adminHelper.getAllproducts()
   userHelper.getcartcount(req.session.user._id).then((cartcount) => {
     res.render('user/women', { "user": req.session.user, userss: true, products, cartcount })
@@ -84,29 +86,9 @@ router.get('/women', async (req, res) => {
 })
 
 
-//CART
-
-
-
-// router.get('/cart', verifyUserLogin, async (req, res) => {
-//   let cartCount = null
-//   console.log("hy i ma ajo");
-//   let total = await userHelper.getTotalAmount(req.session.user._id)
-//   let products = await userHelper.getcartproducts(req.session.user._id)
-//   console.log(products);
-//   let cartcount = await userHelper.getcartcount(req.session.user._id)
-//   if (cartcount <= 0) {
-//     res.render('user/clearcart', { cart: true, userss: true, user: req.session.user })
-//   }
-//   else {
-//     res.render('user/cart', { products, cart: true, user: req.session.user, userss: true, total })
-//   }
-
-
-// })
-
 
 router.get('/cart', verifyUserLogin, async (req, res) => {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   let cartcount = null
  let total = await userHelper.getTotalAmount(req.session.user._id)
 let products = await userHelper.getcartproducts(req.session.user._id)
@@ -131,7 +113,9 @@ router.get('/add-to-cart/:id', async (req, res) => {
 })
 
 router.post('/delete-cart-item', (req, res) => {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   let cartId = req.body.cart
+
   let proId = req.body.products
   console.log('sdfsgfhjsdgfhsdgf');
   userHelper.deleteCartProduct(req.body).then((response) => {
@@ -149,6 +133,7 @@ router.post('/delete-cart-item', (req, res) => {
 
 
 router.get('/wishlist', verifyUserLogin, async (req, res) => {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   let wishCount = null
   console.log("hy i ma ajo");
 
@@ -167,6 +152,7 @@ router.get('/wishlist', verifyUserLogin, async (req, res) => {
 
 
 router.get('/add-To-wishlist/:id', async (req, res) => {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 
   let pId = await req.params.id
   if (req.session.userloggedIn) {
@@ -188,6 +174,7 @@ router.get('/add-To-wishlist/:id', async (req, res) => {
 
 
 router.post('/delete-wish-item', (req, res) => {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   let wishtId = req.body.wishlist
   let wishId = req.body.products
   userHelper.deletewishProduct(req.body).then((response) => {
@@ -201,6 +188,7 @@ router.post('/delete-wish-item', (req, res) => {
 
 
 router.get('/wishadd-to-cart/:id', async (req, res) => {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   console.log("api call");
   await userHelper.addTocart(req.params.id, req.session.user._id).then(() => {
     res.json({ status: true })
@@ -213,6 +201,7 @@ router.get('/wishadd-to-cart/:id', async (req, res) => {
 //CHNAGE PRODUCT QUANTITY
 
 router.post('/change-product-quantity', async (req, res) => {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   console.log("hy there");
   let id = req.body.user
   ide = req.session.user._id
@@ -242,6 +231,7 @@ router.post('/change-product-quantity', async (req, res) => {
 //PLACE ORDER
 
 router.get('/place-order', verifyUserLogin, async (req, res) => {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 
   let user = req.session.user
   let userId = req.session.user._id
@@ -287,6 +277,7 @@ router.get('/place-order', verifyUserLogin, async (req, res) => {
 
 
 router.post('/place-order', async (req, res) => {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   console.log("in place order");
   let id = req.session.user._id
   let products = await userHelper.getCartProductList(id)
@@ -367,6 +358,7 @@ router.post('/place-order', async (req, res) => {
 //ORDER CANCEL
 
 router.get('/cancelled', (req, res) => {
+
   res.render('user/user-ordercanceld',{userss:true,user:req.session.user})
 })
 
@@ -417,6 +409,7 @@ router.get('/success', (req, res) => {
 //BUY NOW
 
 router.get('/buyNow/:id', verifyUserLogin, async (req, res) => {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   let pId = req.params.id
   console.log(pId, "buy id");
   req.session.proId = pId
@@ -446,6 +439,7 @@ router.get('/buyNow/:id', verifyUserLogin, async (req, res) => {
 
 
 router.post('/buy-Now', async (req, res) => {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 
   let id = req.session.user._id
   let products = await userHelper.buyproduct(id)
@@ -653,6 +647,7 @@ router.post('/password-change', verifyUserLogin, (req, res) => {
 
 
 router.get('/singleproduct/:id', verifyUserLogin, async (req, res) => {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   id = req.params.id
 
   console.log("123345677");
@@ -673,6 +668,7 @@ router.get('/singleproduct/:id', verifyUserLogin, async (req, res) => {
 //add address in place order
 
 router.get('/add-new-add', (req, res) => {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 
   let user = req.session.user
   res.render('user/add-new-add', { userss: true, user })
@@ -694,6 +690,7 @@ router.post('/addNewAddress', (req, res) => {
 
 
 router.get('/buyaddaddress', (req, res) => {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 
   let user = req.session.user
 
@@ -725,6 +722,7 @@ router.post('/addNewBuyAddress', (req, res) => {
 
 //orders
 router.get('/orders', async (req, res) => {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   let user = req.session.user
   let id = req.session.user._id
 
@@ -751,6 +749,7 @@ router.get('/orders', async (req, res) => {
 
 })
 router.get('/singleOrder/:id', async (req, res) => {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   let user = req.session.user
   let oId = req.params.id
   console.log(oId, "order id for view");
@@ -779,6 +778,7 @@ router.get('/login', function (req, res, next) {
 });
 
 router.get('/signup', function (req, res, next) {
+
   if (req.session.userloggedIn) {
     res.redirect('/', { userss: true })
   } else {

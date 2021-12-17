@@ -165,7 +165,7 @@ function fileValidation2() {
     var fileInput = document.getElementById('file2');
 
     var filePath = fileInput.value;
-    var allowedExtensions = /(\.jpg)$/i;
+    var allowedExtensions = /(\.jpg|\.webp)$/i;
     if (!allowedExtensions.exec(filePath)) {
         alert('Please upload file having extensions .jpeg only.');
         fileInput.value = '';
@@ -219,7 +219,7 @@ function fileValidation3() {
     var fileInput = document.getElementById('file3');
 
     var filePath = fileInput.value;
-    var allowedExtensions = /(\.jpg)$/i;
+    var allowedExtensions = /(\.jpg|\.webp)$/i;
     if (!allowedExtensions.exec(filePath)) {
         alert('Please upload file having extensions .jpeg only.');
         fileInput.value = '';
@@ -274,8 +274,8 @@ function fileValidation4() {
     var fileInput = document.getElementById('file4');
 
     var filePath = fileInput.value;
-    var allowedExtensions = /(\.jpg)$/i;
-    if (!allowedExtensions.exec(filePath)) {
+    var allowedExtensions = /(\.jpg|\.webp)$/i;
+        if (!allowedExtensions.exec(filePath)) {
         alert('Please upload file having extensions .jpeg only.');
         fileInput.value = '';
         return false;
