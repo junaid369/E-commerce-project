@@ -213,7 +213,7 @@ router.post('/change-product-quantity', async (req, res) => {
 
     let total = await userHelper.getTotalAmount(ide)
     console.log("**********");
-    response.subTotal = await userHelper.getSubTotal(ide, proId)
+    responsbuye.subTotal = await userHelper.getSubTotal(ide, proId)
     console.log(response.subTotal, "sub total");
     response.total = total
     console.log(total, ")))))))))))");
