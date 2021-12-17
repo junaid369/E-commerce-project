@@ -409,11 +409,9 @@ router.get('/success', (req, res) => {
 //BUY NOW
 
 router.get('/buyNow/:id', verifyUserLogin, async (req, res) => {
-  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   let pId = req.params.id
   console.log(pId, "buy id");
   req.session.proId = pId
-  let userId = req.session.user._id
   let user = req.session.user
   let productDetails = await userHelper.buyproductdetails(pId)
   console.log(productDetails, "OOOOOO");
@@ -439,11 +437,8 @@ router.get('/buyNow/:id', verifyUserLogin, async (req, res) => {
 
 
 router.post('/buy-Now', async (req, res) => {
-  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-
   let id = req.session.user._id
   let products = await userHelper.buyproduct(id)
-
   let total = 0
   if (req.session.couponTotal) {
     console.log("coupon applied");
@@ -457,7 +452,6 @@ router.post('/buy-Now', async (req, res) => {
     req.session.orderId = orderId
     if (req.body['payment'] == 'COD') {
       res.json({ codSuccess: true })
-
     } else if (req.body['payment'] == 'Razorpay') {
       console.log("razorpay", req.session.total);
       userHelper.generateRazorpay(orderId, total).then((resp) => {

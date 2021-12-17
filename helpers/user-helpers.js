@@ -617,14 +617,6 @@ getTotalAmount: (userId) => {
 
 
 
-//     buyproductdetails:(id)=>{
-//         return new Promise(async(resolve,reject)=>{
-//  buyproduct=await db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id:ObjectId(id)})
-//  resolve(buyproduct)
-//  console.log(buyproduct,"???????");
-//  console.log(buyproduct.PPrice,"yourprice");
-//         })
-//     },
     
     addNewAddress: (details) => {
         console.log(details.User);
