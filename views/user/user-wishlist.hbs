@@ -180,9 +180,10 @@
                             <div class="items">
                                 <div class="product">
                                     <div class="row">
+                                        <div class="container">
                                         {{#each wishlist}}
                                         <div class="col-md-3 mt-5">
-                                            <img class="img-fluid" src="/product-images/{{this.product._id}}.a.jpg" style="">
+                                             <a href="/singleproduct/{{this.product._id}}" ><img class="img-fluid" src="https://lafemme.tech/product-images/{{this.product._id}}.a.jpg" style=""></a>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="info">
@@ -210,6 +211,7 @@
                                
                                         </div>
                                         {{/each}}
+                                    </div>
                                     </div>
                                 </div>
                       
