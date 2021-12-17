@@ -1111,12 +1111,12 @@ getTotalAmount: (userId) => {
             }
             let product=[proObj]
             resolve(product)
-            // console.log(product,"buy product");
-            // console.log(product.item.PPrice,"your price");
+           
 
 
         })
     },
+
 
    buyproductdetails:(id)=>{
        return new Promise(async(resolve,reject)=>{
@@ -1176,7 +1176,7 @@ console.log(buyproduct.PPrice,"yourprice");
 
     addToWishlist: (proId, userId) => {
         let wishObj = {
-            item: objectId(proId)
+            item: ObjectId(proId)
         }
         return new Promise(async (resolve, reject) => {
             let userWish = await db.get().collection(collection.WISHLIST_COLLECTION).findOne({ user: objectId(userId) })

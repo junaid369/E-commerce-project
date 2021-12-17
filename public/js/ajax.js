@@ -442,3 +442,46 @@ function couponApply() {
 
     })
 }
+
+
+
+function cancelOrder(oId) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to Cancel this order ",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            $.ajax({
+                url: '/cancelOrder',
+                data: {
+                    id: oId
+                },
+                method: 'post',
+                success: (response) => {
+                    if (response.status) {
+                        Swal.fire(
+                            'Cancelled!',
+                            'Order has been Cancelled.',
+                            'success'
+                        )
+                        location.reload()
+                    } else {
+                        Swal.fire("some error")
+                    }
+                }
+            })
+        }
+        else {
+            return false;
+        }
+    })
+}
+
+
+

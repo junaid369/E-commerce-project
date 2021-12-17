@@ -33,6 +33,8 @@ router.get('/login', (req, res) => {
   }
 })
 router.post('/login', (req, res,) => {
+  console.log("12334");
+  console.log(req.body);
   adminHelper.doAdminLogin(req.body).then((responseAdmin) => {
     if (responseAdmin.status) {
       req.session.admin = responseAdmin.admin
@@ -54,7 +56,7 @@ router.get('/', async function(req, res, next) {
     let latestorders=await adminHelper.latestorders()
     let userCount= await adminHelper.getUserCount()
     let productCount=await adminHelper.getProductCount()
-    // let Profite=await adminHelper.getProfite()
+    let Profite=await adminHelper.getProfite()
    let AllMethods=await adminHelper.AllMethods()
    let Status=await adminHelper.OrderStatus()
    let Topproducts=await adminHelper.topSellingProducts() 
@@ -66,7 +68,7 @@ router.get('/', async function(req, res, next) {
    console.log(Topproducts,"top products");
   // Profite
 console.log(Topproducts.brand);
-    res.render('admin/dashboard', { admin: true,latestproduct,latestorders,userCount,productCount,AllMethods,Status,Topproducts })
+    res.render('admin/dashboard', { admin: true,latestproduct,latestorders,userCount,productCount,AllMethods,Status,Topproducts,Profite })
   }
   else {
     res.redirect('/admin/login')
@@ -473,7 +475,7 @@ router.get('/orders', async (req, res) => {
   console.log("8888888");
   let ordersList = await adminHelper.getAllOrders()
   console.log(ordersList);
-  res.render('admin/all-orders', { admin: true, ordersList })
+  res.render('admin/all-orders', { admin: true, ordersList})
 })
 
 router.get('/singleOrder/:id', (req, res) => {
@@ -721,8 +723,46 @@ router.get('/delete-catOffer/:id', verifyAdminLogin, (req, res) => {
 
 // sales report
 
-router.get('/salesreport',(req,res)=>{
-  res.render('admin/salesreport',{admin:true,sales:true})
+// router.get('/salesreport',async(req,res)=>{
+//  sale=req.session.sale
+//  sales= await adminHelper.salesreport()
+//  console.log(sales,"your sale");
+//   res.render('admin/salesreport',{admin:true,sales:true,sales})
+// })
+
+
+// router.post('/salesreportdate',async(req,res)=>{
+
+ 
+//   sales= await adminHelper.salesreport()
+ 
+
+//   res.render('admin/salesreport',{admin:true,sales:true})
+// })
+
+
+router.get('/userreport',async(req,res)=>{
+  product= await adminHelper.allProductDetails()
+  console.log(product,")))))");
+   res.render('admin/userreport',{admin:true,sales:true,product})
+ })
+
+
+ router.get('/orderreport', async (req, res) => {
+  Orders = await adminHelper.getAllOrders()
+  console.log(Orders,"23332");
+  res.render('admin/Order-report', { admin: true, Orders })
+})
+
+router.get('/salesreport', (req, res) => {
+  res.render('admin/salesreport', { admin: true })
+})
+
+router.post('/sales-report', async (req, res) => {
+  console.log(req.body);
+  sales = await adminHelper.getSales(req.body)
+  console.log(sales);
+  res.render('admin/salesreport', { admin: true, sales })
 })
 
 

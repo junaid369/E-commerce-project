@@ -59,7 +59,7 @@ $(document).ready(function(){
             required:true,
             email:true
         },
-        Number:{
+        mobile:{
             required:true,
             minlength:10,
             maxlength:10
