@@ -1390,6 +1390,25 @@ router.post('/couponApply', (req, res) => {
   })
 })
 
+router.post('/couponApply1', (req, res) => {
+  id=req.session.user._id
+  console.log(req.body);
+  userHelper.couponValidate(req.body,id).then((response) => {
+    req.session.couponTotal = response.total
+    if (response.success) {
+      res.json({ couponSuccess: true, total: response.total })
+    } else if (response.couponUsed) {
+      res.json({ couponUsed: true })
+    }
+    else if (response.couponExpired) {
+      res.json({ couponExpired: true })
+    }
+    else if(response.invalidCoupon){
+      res.json({ invalidCoupon: true })
+    }
+    console.log(response);
+  })
+})
 
 
 

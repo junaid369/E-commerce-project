@@ -326,62 +326,62 @@ function deletewishlist(wish, prodId, proId) {
 
 
 
-function couponApply1() {
-    let couponCode = document.getElementById('couponInput').value
-    let couponTotal = document.getElementById('couponTotal').value
-    $.ajax({
-        url: '/couponApply',
-        data: {
-            Coupon: couponCode,
-            Total: couponTotal
+// function couponApply1() {
+//     let couponCode = document.getElementById('couponInput').value
+//     let couponTotal = document.getElementById('couponTotal').value
+//     $.ajax({
+//         url: '/couponApply',
+//         data: {
+//             Coupon: couponCode,
+//             Total: couponTotal
 
-        },
-        method: 'post',
-        success: (response) => {
-            console.log(response)
-            if (response.couponSuccess) {
-                let oldTotal = parseInt(document.getElementById('totalOriginal').innerHTML)
-                let discount = oldTotal - parseInt(response.total)
-                document.getElementById('couponInput').readOnly = true
-                document.getElementById('discount').innerHTML = discount
-                $('#discount').show()
-                $('#discountLabel').show()
-                document.getElementById('totalOriginal').innerHTML = response.total
-                $('#couponSuccess').show()
-                $('#couponUsed').hide()
-                $('#couponInvalid').hide()
-                $('#couponExpired').hide()
-            }
+//         },
+//         method: 'post',
+//         success: (response) => {
+//             console.log(response)
+//             if (response.couponSuccess) {
+//                 let oldTotal = parseInt(document.getElementById('totalOriginal').innerHTML)
+//                 let discount = oldTotal - parseInt(response.total)
+//                 document.getElementById('couponInput').readOnly = true
+//                 document.getElementById('discount').innerHTML = discount
+//                 $('#discount').show()
+//                 $('#discountLabel').show()
+//                 document.getElementById('totalOriginal').innerHTML = response.total
+//                 $('#couponSuccess').show()
+//                 $('#couponUsed').hide()
+//                 $('#couponInvalid').hide()
+//                 $('#couponExpired').hide()
+//             }
 
-            if (response.couponUsed) {
-                $('#couponUsed').show()
-                $('#couponSuccess').hide()
-                $('#couponInvalid').hide()
-                $('#couponExpired').hide()
-                $('#discount').hide()
-                $('#discountLabel').hide()
-            }
-            if (response.invalidCoupon) {
-                $('#couponInvalid').show()
-                $('#couponSuccess').hide()
-                $('#couponUsed').hide()
-                $('#couponExpired').hide()
-                $('#discount').hide()
-                $('#discountLabel').hide()
-            }
-            if (response.couponExpired) {
-                $('#couponExpired').show()
-                $('#couponSuccess').hide()
-                $('#couponInvalid').hide()
-                $('#couponUsed').hide()
-                $('#discount').hide()
-                $('#discountLabel').hide()
+//             if (response.couponUsed) {
+//                 $('#couponUsed').show()
+//                 $('#couponSuccess').hide()
+//                 $('#couponInvalid').hide()
+//                 $('#couponExpired').hide()
+//                 $('#discount').hide()
+//                 $('#discountLabel').hide()
+//             }
+//             if (response.invalidCoupon) {
+//                 $('#couponInvalid').show()
+//                 $('#couponSuccess').hide()
+//                 $('#couponUsed').hide()
+//                 $('#couponExpired').hide()
+//                 $('#discount').hide()
+//                 $('#discountLabel').hide()
+//             }
+//             if (response.couponExpired) {
+//                 $('#couponExpired').show()
+//                 $('#couponSuccess').hide()
+//                 $('#couponInvalid').hide()
+//                 $('#couponUsed').hide()
+//                 $('#discount').hide()
+//                 $('#discountLabel').hide()
 
-            }
-        }
+//             }
+//         }
 
-    })
-}
+//     })
+// }
 
 
 

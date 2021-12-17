@@ -1337,12 +1337,7 @@ console.log(buyproduct.PPrice,"yourprice");
                         obj.success = true
                         resolve(obj)
                         resolve(data)
-                        // db.get().collection(collection.COUPON_OFFERS).updateOne({ coupon: data.CouponCode }, {
-                        //     $set: {
-                        //         Status: 0
-                        //     }
-                        // })
-                        // console.log("success");
+                      
 
                     } else {
                         obj.couponUsed = true
