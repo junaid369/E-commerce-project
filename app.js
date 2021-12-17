@@ -7,8 +7,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var db = require('./config/connection')
 var fileupload=require('express-fileupload')
-// var util= require('util');
-// var encoder = new util.TextEncoder('utf-8');
+//mongostore
+
+const Mongostore=require('connect-mongo');
 require('dotenv').config()
 const paypal=require('paypal-rest-sdk')
 paypal.configure({
@@ -40,7 +41,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({secret:"Key",cookie:{maxAge:500000}}))
+app.use(session({
+  secret:"Key",
+  cookie:{maxAge:500000},
+  saveUninitialized:true,
+Store:Mongostore.create({
+  mongoUrl:'mongodb+srv://junaid:1q2w3e@lafemme.ljr4k.mongodb.net/lafemme?retryWrites=true&w=majority',
+  ttl:2*24*60*60,
+  autoRemove:'native'
+})
+
+
+}))
+
+
+
+
+
 app.use(fileupload())
 app.use('/', userRouter);
 app.use('/admin', adminRouter);
