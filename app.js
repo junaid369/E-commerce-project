@@ -45,7 +45,7 @@ app.use(session({
   secret:"Key",
   cookie:{maxAge:500000},
   saveUninitialized:true,
-Store:Mongostore.create({
+store:Mongostore.create({
   mongoUrl:'mongodb+srv://junaid:1q2w3e@lafemme.ljr4k.mongodb.net/lafemme?retryWrites=true&w=majority',
   ttl:2*24*60*60,
   autoRemove:'native'
