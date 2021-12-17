@@ -449,7 +449,7 @@ router.post('/buy-Now', async (req, res) => {
 
   let id = req.session.user._id
   let products = await userHelper.buyproduct(id)
-  
+
   let total = 0
   if (req.session.couponTotal) {
     console.log("coupon applied");
@@ -855,7 +855,8 @@ router.post('/loginotp', (req, res) => {
           req.session.user = user
           req.session.userloggedIn = true
           res.redirect('/')
-        })
+        })  
+        
 
       } else {
         console.log("error");
