@@ -74,6 +74,26 @@ function addtowishlist(proId) {
 
 
 
+function autoFill(fname, lname, house, street, town, pin) {
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Form auto filled',
+        showConfirmButton: false,
+        timer: 1500
+    })
+    document.getElementById('firstName').value = fname
+    document.getElementById('LastName').value = lname
+    document.getElementById('House').value = house
+    document.getElementById('Street').value = street
+    document.getElementById('Town').value = town
+    document.getElementById('PIN').value = pin
+
+}
+
+
+
+
 function ChangeQty(cartId, proId, count,userID) {
     console.log(cartId,proId,count,"your datas"); 
 
