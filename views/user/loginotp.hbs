@@ -1,3 +1,4 @@
+
 <style>
     body {
         background-color: red
@@ -73,18 +74,22 @@
     <div class="container height-100 d-flex justify-content-center align-items-center">
         <form action="/loginotp" method="post" id="loginotp">
             <div class="position-relative">
-                <div class="card p-2 text-center">
+                <div class="card p-2 text-center" >
                     <h6>Please enter the one time password <br> to verify your account</h6>
                    
-                    <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> <input
+                    {{!-- <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> <input
                             class="m-2 text-center form-control rounded" name="otp" type="text" id="first"
                             maxlength="1" /> <input class="m-2 text-center form-control rounded" name="otp" type="text"
                             id="second" maxlength="1" /> <input class="m-2 text-center form-control rounded" name="otp"
                             type="text" id="third" maxlength="1" /> <input class="m-2 text-center form-control rounded"
                             name="otp" type="text" id="fourth" maxlength="1" /> <input
                             class="m-2 text-center form-control rounded" name="otp" type="text" id="fifth"
-                            maxlength="1" /> <input class="m-2 text-center form-control rounded" name="otp" type="text"
-                            id="sixth" maxlength="1" /> </div>
+                            maxlength="6" /> <input class="m-2 text-center form-control rounded" name="otp" type="text"
+                            id="sixth" maxlength="1" /> </div> --}}
+
+                            <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2" style="">
+                                <input type="text" id="first" name="otp" value="" placeholder="enter your otp" style="width: max-content;">
+                            </div>
 
                     <div class="text-center mt-3">
                         <span class="d-block mobile-text" id="countdown"></span>

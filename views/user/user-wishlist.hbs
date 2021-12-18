@@ -170,9 +170,6 @@
         <section class="shopping-cart dark">
             <div class="container">
                 <div class="block-heading">
-                    {{!-- <h2>Shopping Cart</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in,
-                        mattis vitae leo.</p> --}}
                 </div>
                 <div class="content">
                     <div class="row">
@@ -201,7 +198,7 @@
                                                         </div>
                                                                      {{!-- <div class="row"> --}}
                                                         <a  href="/buyNow/{{this.product._id}}" type="button" onclick="deletewishlist{{this._id}}" class="btn btn-secondary ml-3" style="background-color: #1643E0; text-decoration: none;  width: 100px;">BUY</a>
-                                                        <a href="/wishadd-to-cart/{{this.product._id}}" type="button" class="btn btn-secondary ml-3" style="background-color: #E8B32A; width:100px; text-decoration: none;" >Add To cart</a>
+                                                        <a  onclick="addtocart('{{this._id}}')"  type="button" class="btn btn-secondary ml-3" style="background-color: #E8B32A; width:100px; text-decoration: none;" >Add To cart</a>
                                                         {{!-- </div> --}}
                                                     </div>
                                  
@@ -219,7 +216,9 @@
                         </div>
                      
                     </div>
+                    
                 </div>
+                
             </div>
         </section>
     </main>

@@ -817,7 +817,9 @@ router.get('/loginotp', (req, res) => {
     res.redirect('/')
   } else {
 
-    res.render('user/loginotp', { login: true, otp: true, "invalid": req.session.invalidOtp })
+    res.render('user/loginotp', { login: true, otp: true, "invalid": req.session.invalidOtp,sample:true })
+
+    // res.render('user/otp', { login: true, otp: true, "invalidotp": req.session.invalidOtp })
     req.session.invalidOtp = false;
   }
 })
@@ -894,7 +896,7 @@ router.get('/otp', (req, res) => {
 
 
 router.post('/otp', (req, res) => {
-  console.log("junaid");
+
 
 
   let a = Object.values(req.body.otp)
@@ -969,11 +971,11 @@ router.post('/mobileotp', (req, res) => {
           console.log("hi iam junaid");
           req.session.number = resp.to
           req.session.loginHalf = true
-          res.redirect('/otp')
+          res.redirect('/loginotp')
         }).catch((err) => {
           console.log(err, "err");
           req.session.otpErr = true
-          res.redirect('/otp')
+          res.redirect('/loginotp')
         })
     } else {
       req.session.noUserMobile = true

@@ -128,20 +128,21 @@ $(document).ready(function(){
 })
 
 
-// $(document).ready(function(){
-//     $("#loginotp").validate({
-//     rules:{
+$(document).ready(function(){
+    $("#loginotp").validate({
+    rules:{
       
-//       otp:{
-//             required:true,
+      otp:{
+           minlength:6,
+           maxlength:6
         
-//         },
+        },
        
       
-//     }
-// })
+    }
+})
 
-// })
+})
 
 // $(document).ready(function(){
 //     $("#signupotp").validate({
