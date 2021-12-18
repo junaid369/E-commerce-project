@@ -110,15 +110,15 @@
     crossorigin="anonymous"></script>
 <script>
     function statusChecker(orderId) {
-        console.log("llog", orderId)
+      
         let Status = document.getElementById(orderId).innerHTML
-        console.log('ja', status)
+     
         if (Status === 'Placed') {
-            console.log("Placed")
+            
             document.getElementById(orderId + 'placed').style.display = "none";
 
         }else if (Status === 'Shipped') {
-            console.log("Shipped")
+        
             document.getElementById(orderId + 'placed').style.display = "none";
 
         } else if (Status === 'Delivered') {

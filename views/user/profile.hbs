@@ -45,15 +45,17 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                <div class="profile-work">
-                    <p>Settings</p>
-                    <a href="/orders">My Orders</a><br />
-                    {{!-- <a href="">Add new Address</a><br /> --}}
-                    <a href="/change-password">Change password</a>
-
-                </div>
+                   {{!-- <div class="col-md-3 "> --}}
+      <div class="profile-sidebar mb-5">
+        <div class="list-group ">
+          <a href="/profile" class="list-group-item list-group-item-action ">PROFILE</a>
+          <a href="/Orders" class="list-group-item list-group-item-action actived">My Orders</a>
+          <a href="/change-password" class="list-group-item list-group-item-action">Change Password</a>
+        </div>
+      </div>
+    {{!-- </div> --}}
             </div>
-            <div class="col-md-8 " style="margin-bottom: 40px;">
+            <div class="col-md-8 " style="">
                 <div class="tab-content profile-tab" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                   
@@ -96,7 +98,7 @@
             </div>
         </div>
    
-
+{{!-- 
     <div class="row  ml-5">
       {{#each address}}
 
@@ -117,12 +119,7 @@
                     <h5 class="card-title">{{this.FirstName}}{{this.LastName}}</h5>
                     <h5 class="card-text">{{this.House}},{{this.Street}},{{this.Town}},{{this.PIN}}</h5>
 
-                    {{!-- <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a> --}}
                     </div>
- 
-                    <div class="" style="">
-                        {{!-- <a href="/editaddress/{{this._id}}">Edit</a> --}}
                      <a href="/editaddress/{{this._id}}" class="class=btn btn-success text-center" type="submit"  style=" width: 13rem; height: 30px; color: white; border: none; " value="Edit" >Edit</a> 
                     </div>
                              <div class="mt-2" >
@@ -134,13 +131,24 @@
             </div>
         
         </div>
+   {{/each}} --}}
+   <div class="row">
+      {{#each address}}
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{this.FirstName}}{{this.LastName}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{this.House}},{{this.Street}}</h6>
+    <p class="card-text">{{this.Town}},{{this.PIN}}.</p>
+    <a href="/editaddress/{{this._id}}" class="card-link btn btn-info">Edit</a>
+    <a  href="/delete-address/{{this._id}}"  onclick="deleteaddresss(event)" class="card-link btn btn-danger">Delete</a>
+  </div>
+</div>
    {{/each}}
-   
-  
+
         <div class="col-md-3" style="">
 
         
-            <div class="card mt-4 " style="height: 15rem;">
+            <div class="card mt-1 " style="height: 17rem;">
 
                 <h4 class="text-center mt-3">Addnewaddress</h4>
 
@@ -260,7 +268,7 @@
 			method: 'post',
 			success: (response) => {
 				if (response.removeProduct) {
-					console.log("hello ew")
+					
 				
 					
 					location.reload()

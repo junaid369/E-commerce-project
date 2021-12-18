@@ -388,7 +388,7 @@
 					location.href = "/order-success"
 				} else if (response.razorpay) {
 
-					console.log(response)
+				
 					razorPayment(response)
 
 				} else {
@@ -416,7 +416,7 @@
 			"image": "https://example.com/your_logo",
 			"order_id": order.resp.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
 			"handler": function (response) {
-				console.log(response)
+				
 				verifyPayment(response, order)
 
 			},

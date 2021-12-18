@@ -16,36 +16,7 @@ const { response } = require('../app')
 
 
 module.exports = {
-    // doAdminLogin: (adminData) => {
-    //     console.log("!!!!!!!!!!!!1111");
-    //     console.log(adminData);
-    //     return new Promise(async (resolve, reject) => {
-    //         let loginStatus = false
-    //         let responseAdmin = {}
-    //         let admin = await db.get().collection(collection.ADMIN_COLLECTTION_COLLECTTION).findOne({ email: adminData.email })
-    //         console.log("bbbbbbbbbbbb");
-    //         if (admin) {
-    //             console.log(admin,"!!!!!!!!!!!!!");
-
-
-    //             if (adminData.password == admin.password) {
-                  
-
-    //                 responseAdmin.admin = admin
-    //                 responseAdmin.status = true
-    //                 resolve(responseAdmin)
-    //             } else {
-
-    //                 resolve({ status: false })
-    //             }
-
-    //         } else {
-
-    //             resolve({ status: false })
-    //         }
-    //     })
-    // },
-
+   
 
 
     doAdminLogin: (adminData) => {
