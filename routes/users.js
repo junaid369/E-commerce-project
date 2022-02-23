@@ -204,11 +204,12 @@ router.post('/change-product-quantity', async (req, res) => {
   let proId = req.body.product
 
   userHelper.changeProductCount(req.body).then(async (response) => {
+  
     
 
     let total = await userHelper.getTotalAmount(ide)
    
-    responsbuye.subTotal = await userHelper.getSubTotal(ide, proId)
+    response.subTotal = await userHelper.getSubTotal(ide, proId)
    
     response.total = total
 

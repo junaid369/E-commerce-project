@@ -173,19 +173,22 @@
                 </div>
                 <div class="content">
                     <div class="row">
-                        <div class="col-md-12 col-lg-8">
+                        <div class=" col-md-12">
                             <div class="items">
                                 <div class="product">
-                                    <div class="row">
+                                
                                         <div class="container">
                                         {{#each wishlist}}
-                                        <div class="col-md-3 mt-5">
-                                             <a href="/singleproduct/{{this.product._id}}" ><img class="img-fluid" src="https://lafemme.tech/product-images/{{this.product._id}}.a.jpg" style=""></a>
+                                        <div class="col-md-4 ">
+                                            <div class="row">
+                                                
+                                            </div>
+                                             <a href="/singleproduct/{{this.product._id}}" ><img class="img-fluid" src="/product-images/{{this.product._id}}.a.jpg" style=""></a>
                                         </div>
-                                        <div class="col-md-8">
+                                        {{!-- <div class="col-md-8"> --}}
                                             <div class="info">
-                                                <div class="row">
-                                                    <div class="col-md-6 product-name ">
+                                             
+                                                    <div class="col-md-4 product-name ">
                                                         <div class="product-name">
                                                             <a href="#">{{this.product.name}}</a>
                                                             <a href=""  onclick="deletewish('{{this._id}}','{{this.product._id}}')" ><i class="fas fa-trash ml-auto" style="color: red;"></i></a>
@@ -196,20 +199,19 @@
                                                                 <div>Price: <span class="value">{{this.product.PPrice}}</span></div>
                                                             </div>
                                                         </div>
-                                                                     {{!-- <div class="row"> --}}
                                                         <a  href="/buyNow/{{this.product._id}}" type="button" onclick="deletewishlist{{this._id}}" class="btn btn-secondary ml-3" style="background-color: #1643E0; text-decoration: none;  width: 100px;">BUY</a>
                                                         <a  onclick="addtocart('{{this._id}}')"  type="button" class="btn btn-secondary ml-3" style="background-color: #E8B32A; width:100px; text-decoration: none;" >Add To cart</a>
-                                                        {{!-- </div> --}}
+                                                     
                                                     </div>
-                                 
-                                            </div>
+{{!--                                  
+                                            </div> --}}
                                                  
-                                                </div>
+                                                {{!-- </div> --}}
                                
                                         </div>
                                         {{/each}}
                                     </div>
-                                    </div>
+                               
                                 </div>
                       
                             </div>
